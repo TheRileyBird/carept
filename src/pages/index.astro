@@ -1,0 +1,735 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import {
+  ArrowRight,
+  Brain,
+  Building2,
+  CalendarDays,
+  CircleCheckBig,
+  ChevronRight,
+  Clock3,
+  Dumbbell,
+  Mail,
+  MapPin,
+  Menu,
+  MoveRight,
+  Phone,
+  Quote,
+  ShieldCheck,
+  Sparkles,
+  Star,
+  Users,
+  Waves,
+  X,
+} from "@lucide/astro";
+
+const locations = [
+  {
+    city: "Bogalusa, LA",
+    phone: "(985) 735-1426",
+    fax: "(985) 735-1428",
+    address: "1202 Sunset Dr.",
+    zip: "Bogalusa, LA 70427",
+    hours: "Mon-Thu 7:00 AM-5:00 PM • Fri 7:00 AM-12:00 PM",
+  },
+  {
+    city: "Covington, LA",
+    phone: "(985) 249-6111",
+    fax: "(985) 249-6109",
+    address: "129 Corporate Dr.",
+    zip: "Covington, LA 70433",
+    hours: "Mon-Thu 6:30 AM-6:00 PM • Fri 6:30 AM-4:00 PM",
+  },
+  {
+    city: "Franklinton, LA",
+    phone: "(985) 795-1746",
+    fax: "(985) 795-1749",
+    address: "44626 J Meadie Knight Drive",
+    zip: "Franklinton, LA 70438",
+    hours: "Mon/Wed/Fri 8:00 AM-5:00 PM • Tue/Thu 8:00 AM-1:00 PM",
+    image: "/assets/clinics/franklinton.jpg",
+  },
+  {
+    city: "Ponchatoula, LA",
+    phone: "(985) 386-2222",
+    fax: "(985) 386-3000",
+    address: "1625 Hwy 51 Suite C",
+    zip: "Ponchatoula, LA 70454",
+    hours: "Mon-Thu 8:00 AM-6:00 PM • Fri 8:00 AM-2:30 PM",
+    image: "/assets/clinics/ponchatoula.jpg",
+  },
+  {
+    city: "Hattiesburg, MS",
+    phone: "(601) 296-0199",
+    fax: "(601) 296-0189",
+    address: "52 98 Place Blvd.",
+    zip: "Hattiesburg, MS 39402",
+    hours: "Mon-Thu 6:30 AM-6:00 PM • Fri 6:30 AM-12:30 PM",
+    image: "/assets/clinics/hattiesburg.jpg",
+  },
+  {
+    city: "Sumrall, MS",
+    phone: "(601) 758-3333",
+    fax: "(601) 758-3355",
+    address: "4877 Mississippi 589",
+    zip: "Sumrall, MS 39482",
+    hours: "Mon-Thu 7:00 AM-5:00 PM • Fri 7:00 AM-12:00 PM",
+  },
+];
+
+const conditions = [
+  "Back, hip pain, and sciatica",
+  "Knee and hip injuries",
+  "Foot and ankle diagnoses",
+  "Neck pain and pinched nerves",
+  "Shoulder and rotator cuff problems",
+  "Elbow, wrist, and hand pain",
+  "Balance and dizziness disorders",
+  "Chronic pain",
+  "Muscle strains and ligament sprains",
+  "Post-surgical rehab and mobility loss",
+];
+
+const services = [
+  {
+    title: "Aquatic Therapy",
+    copy: "Low-impact sessions that build strength and movement confidence without overloading painful joints.",
+    icon: Waves,
+  },
+  {
+    title: "Trigger Point Dry Needling",
+    copy: "Targeted treatment to reduce muscle tension and improve function when movement feels guarded or limited.",
+    icon: Sparkles,
+  },
+  {
+    title: "Corrective Exercise",
+    copy: "Customized movement progressions that restore stability, range of motion, and day-to-day resilience.",
+    icon: Dumbbell,
+  },
+  {
+    title: "Manual Therapy",
+    copy: "Hands-on treatment designed to improve tissue mobility, reduce pain, and unlock better mechanics.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Gait and Balance Training",
+    copy: "Practical training for steadier movement, safer walking, and improved confidence at home and outside.",
+    icon: Brain,
+  },
+  {
+    title: "Customized Home Programs",
+    copy: "Simple, focused exercise plans that extend the clinic work and keep progress moving between visits.",
+    icon: CircleCheckBig,
+  },
+];
+
+const testimonials = [
+  {
+    name: "T.K.",
+    quote: "I won’t be having surgery and I give the credit to my friends at CARE Physical Therapy.",
+  },
+  {
+    name: "A.O.",
+    quote: "I would never have been able to come this far after surgery without their help.",
+  },
+  {
+    name: "CMM",
+    quote: "Billy Cochran always adjusted my treatment based on my feedback. I highly recommend this facility.",
+  },
+  {
+    name: "R.J.",
+    quote: "CARE Physical Therapy in Hattiesburg is a beautiful facility with impressive equipment and aquatic therapy.",
+  },
+];
+
+const team = [
+  {
+    name: "Byron Blackwell",
+    role: "MPT",
+    clinic: "Bogalusa Clinic",
+    image: "/assets/team/byron-blackwell.jpg",
+  },
+  {
+    name: "Brian Cochran",
+    role: "PT, MCMT",
+    clinic: "Covington Clinic",
+    image: "/assets/team/brian-cochran.jpg",
+  },
+  {
+    name: "C. Ryan Tate",
+    role: "DPT",
+    clinic: "Covington Clinic",
+    image: "/assets/team/ryan-tate.jpg",
+  },
+  {
+    name: "Heath Villere",
+    role: "DPT",
+    clinic: "Covington Clinic",
+    image: "/assets/team/heath-villere.jpg",
+  },
+  {
+    name: "Kelvin McCain",
+    role: "PT",
+    clinic: "Franklinton Clinic",
+    image: "/assets/team/kelvin-mccain.jpg",
+  },
+  {
+    name: "Jonathan Mitchell",
+    role: "PT, ATC",
+    clinic: "Ponchatoula Clinic",
+    image: "/assets/team/jonathan-mitchell.jpg",
+  },
+  {
+    name: "Billy Cochran",
+    role: "PT, CSCS",
+    clinic: "Hattiesburg Clinic",
+    image: "/assets/team/billy-cochran.png",
+  },
+  {
+    name: "Stephanie Elkins",
+    role: "DPT",
+    clinic: "Sumrall Clinic",
+    image: "/assets/team/stephanie-elkins.jpg",
+  },
+];
+---
+
+<BaseLayout
+  title="CarePT | Individualized Hands-On Physical Therapy"
+  description="A modern Astro rebuild of the Care Physical Therapy homepage with appointment capture, clinic locations, and hands-on care messaging."
+>
+  <header class="relative border-b border-slate-200/70 bg-white/80 backdrop-blur">
+    <div class="container flex items-center justify-between gap-6 py-4">
+      <a href="/" class="shrink-0">
+        <img src="/assets/brand/logo.svg" alt="Care Physical Therapy" class="h-14 w-auto md:h-16" />
+      </a>
+
+      <div class="hidden items-center gap-8 lg:flex">
+        <nav class="flex items-center gap-6 text-sm font-semibold text-slate-600">
+          <a href="#services" class="transition hover:text-skybrand-700">Services</a>
+          <a href="#conditions" class="transition hover:text-skybrand-700">Conditions</a>
+          <a href="#locations" class="transition hover:text-skybrand-700">Locations</a>
+          <a href="#team" class="transition hover:text-skybrand-700">Team</a>
+          <a href="#appointment" class="transition hover:text-skybrand-700">Appointment</a>
+        </nav>
+        <a
+          href="tel:9852496111"
+          class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-sm font-bold text-slate-700 shadow-card transition hover:bg-slate-200"
+        >
+          <Phone class="h-4 w-4 text-skybrand-700" />
+          Call CarePT
+        </a>
+      </div>
+
+      <div class="lg:hidden" x-data="{ open: false }">
+        <button
+          type="button"
+          class="inline-flex items-center rounded-full border border-slate-200 bg-white p-3 text-slate-700 shadow-card"
+          x-on:click="open = !open"
+          x-bind:aria-expanded="open"
+          aria-controls="mobile-menu"
+        >
+          <Menu class="h-5 w-5" x-show="!open" />
+          <X class="h-5 w-5" x-show="open" x-cloak />
+        </button>
+        <div
+          id="mobile-menu"
+          x-show="open"
+          x-transition
+          x-cloak
+          class="absolute inset-x-4 top-full z-30 mt-3 rounded-3xl border border-slate-200 bg-white p-4 shadow-elevated"
+        >
+          <nav class="grid gap-2 text-sm font-semibold text-slate-700">
+            <a href="#services" class="rounded-2xl px-4 py-3 hover:bg-slate-100">Services</a>
+            <a href="#conditions" class="rounded-2xl px-4 py-3 hover:bg-slate-100">Conditions</a>
+            <a href="#locations" class="rounded-2xl px-4 py-3 hover:bg-slate-100">Locations</a>
+            <a href="#team" class="rounded-2xl px-4 py-3 hover:bg-slate-100">Team</a>
+            <a href="#appointment" class="rounded-2xl px-4 py-3 hover:bg-slate-100">Appointment</a>
+            <a
+              href="tel:9852496111"
+              class="mt-2 inline-flex items-center justify-center gap-2 rounded-2xl bg-skybrand-700 px-4 py-3 text-white"
+            >
+              <Phone class="h-4 w-4" />
+              Call Now
+            </a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="container py-12 md:py-16 xl:py-20">
+      <div class="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full border border-skybrand-200 bg-skybrand-50 px-4 py-2 text-sm font-semibold text-skybrand-800">
+            <CalendarDays class="h-4 w-4" />
+            Natural, affordable, hands-on care
+          </div>
+          <h1 class="mt-6 max-w-3xl font-display text-5xl font-bold leading-[0.95] tracking-tight text-slate-900 md:text-6xl">
+            Individualized physical therapy, close to home.
+          </h1>
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
+            CarePT helps patients reduce pain, avoid unnecessary procedures, and return to movement with expert,
+            one-on-one guidance across Louisiana and Mississippi.
+          </p>
+
+          <div class="mt-8 grid gap-4 sm:grid-cols-2">
+            <div class="rounded-3xl bg-white p-5 shadow-card ring-1 ring-slate-200/70">
+              <p class="text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">At CarePT</p>
+              <ul class="mt-4 space-y-3 text-sm leading-6 text-slate-600">
+                <li class="flex gap-3">
+                  <CircleCheckBig class="mt-0.5 h-5 w-5 shrink-0 text-goldbrand-500" />
+                  We help you avoid addictive pain medications.
+                </li>
+                <li class="flex gap-3">
+                  <CircleCheckBig class="mt-0.5 h-5 w-5 shrink-0 text-goldbrand-500" />
+                  We focus on treatment before expensive, unnecessary testing.
+                </li>
+                <li class="flex gap-3">
+                  <CircleCheckBig class="mt-0.5 h-5 w-5 shrink-0 text-goldbrand-500" />
+                  We show you options beyond surgery and specialist referrals.
+                </li>
+              </ul>
+            </div>
+            <div class="rounded-3xl border border-slate-200/70 bg-slate-900 p-5 text-white shadow-elevated">
+              <p class="text-sm font-semibold uppercase tracking-[0.24em] text-skybrand-200">Quick Access</p>
+              <div class="mt-4 space-y-4">
+                <div>
+                  <p class="text-3xl font-extrabold">6</p>
+                  <p class="text-sm text-slate-300">convenient clinic locations</p>
+                </div>
+                <div>
+                  <p class="text-3xl font-extrabold">Thousands</p>
+                  <p class="text-sm text-slate-300">of patients treated with hands-on care</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+            <a
+              href="#appointment"
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-skybrand-700 px-6 py-3.5 text-sm font-bold text-white shadow-elevated transition hover:bg-skybrand-800"
+            >
+              Request an Appointment
+              <ArrowRight class="h-4 w-4" />
+            </a>
+            <a
+              href="#locations"
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-bold text-slate-700 shadow-card ring-1 ring-slate-200 transition hover:bg-slate-100"
+            >
+              Explore Locations
+              <ChevronRight class="h-4 w-4 text-skybrand-700" />
+            </a>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -left-8 top-12 hidden h-24 w-24 rounded-3xl bg-goldbrand-300/40 blur-2xl lg:block"></div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="overflow-hidden rounded-[2rem] bg-white shadow-elevated ring-1 ring-slate-200/70 sm:col-span-2">
+              <div class="grid gap-0 md:grid-cols-[1.1fr_0.9fr]">
+                <img
+                  src="/assets/clinics/hattiesburg.jpg"
+                  alt="Care Physical Therapy clinic exterior"
+                  class="h-72 w-full object-cover"
+                />
+                <div class="flex flex-col justify-between bg-slate-900 p-6 text-white">
+                  <div>
+                    <p class="text-sm font-semibold uppercase tracking-[0.24em] text-skybrand-200">Welcome to CarePT</p>
+                    <h2 class="mt-3 text-2xl font-bold">You may not need a referral to begin therapy.</h2>
+                    <p class="mt-3 max-w-sm text-sm leading-7 text-slate-300">
+                      Scheduling is quick and easy. Call the clinic nearest you or send an appointment request today.
+                    </p>
+                  </div>
+                  <div class="mt-6 grid gap-3 text-sm text-slate-200">
+                    <div class="flex items-center gap-3">
+                      <MapPin class="h-4 w-4 text-goldbrand-400" />
+                      Covington, Bogalusa, Franklinton, Ponchatoula, Hattiesburg, Sumrall
+                    </div>
+                    <div class="flex items-center gap-3">
+                      <Phone class="h-4 w-4 text-goldbrand-400" />
+                      Multiple clinics with early and extended weekday hours
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <img
+              src="/assets/clinics/franklinton.jpg"
+              alt="Franklinton clinic entrance"
+              class="h-48 w-full rounded-[1.75rem] object-cover shadow-card ring-1 ring-slate-200/70"
+            />
+            <img
+              src="/assets/clinics/ponchatoula.jpg"
+              alt="Ponchatoula clinic building"
+              class="h-48 w-full rounded-[1.75rem] object-cover shadow-card ring-1 ring-slate-200/70"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="conditions" class="border-y border-slate-200/70 bg-white/70 py-16">
+      <div class="container">
+        <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-skybrand-700">First-Time Patients</p>
+            <h2 class="mt-4 max-w-lg font-display text-4xl font-bold leading-tight text-slate-900">
+              We make physical therapy feel clear, structured, and less intimidating.
+            </h2>
+            <p class="mt-4 max-w-xl text-base leading-8 text-slate-600">
+              Pain can make you anxious and uncertain. We de-emphasize jargon and focus on what matters: what hurts,
+              what you need to get back to, and what progress should look like over the next few weeks.
+            </p>
+          </div>
+          <div class="rounded-[2rem] bg-slate-50 p-6 shadow-card ring-1 ring-slate-200/70">
+            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Common Conditions We Treat</p>
+            <div class="mt-5 grid gap-4 sm:grid-cols-2">
+              {
+                conditions.map((condition) => (
+                  <div class="rounded-2xl bg-white px-4 py-4 shadow-sm ring-1 ring-slate-200/70">
+                    <div class="flex gap-3">
+                      <CircleCheckBig class="mt-0.5 h-5 w-5 shrink-0 text-skybrand-700" />
+                      <p class="text-sm font-medium leading-6 text-slate-700">{condition}</p>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="services"
+      class="container py-16"
+      x-data
+      x-intersect.once="$el.querySelectorAll('[data-reveal]').forEach((node, index) => setTimeout(() => node.classList.remove('translate-y-6','opacity-0'), index * 70))"
+    >
+      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.24em] text-skybrand-700">Expert Services</p>
+          <h2 class="mt-4 max-w-2xl font-display text-4xl font-bold text-slate-900">Hands-on treatment supported by practical exercise and patient education.</h2>
+        </div>
+        <p class="max-w-xl text-base leading-8 text-slate-600">
+          The original site lists a broad service menu. This rebuild tightens the presentation into clear, feature-first
+          cards so patients can scan value quickly without losing the breadth of care offered.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {
+          services.map((service) => {
+            const Icon = service.icon;
+
+            return (
+              <article
+                data-reveal
+                class="translate-y-6 rounded-[2rem] border border-slate-200/70 bg-white p-6 opacity-0 shadow-card transition duration-500"
+              >
+                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-skybrand-50 text-skybrand-700 ring-1 ring-skybrand-100">
+                  <Icon class="h-6 w-6" />
+                </div>
+                <h3 class="mt-5 text-xl font-bold text-slate-900">{service.title}</h3>
+                <p class="mt-3 text-sm leading-7 text-slate-600">{service.copy}</p>
+                <a href="#appointment" class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-skybrand-700">
+                  Ask about this service
+                  <MoveRight class="h-4 w-4" />
+                </a>
+              </article>
+            );
+          })
+        }
+      </div>
+    </section>
+
+    <section class="bg-slate-900 py-16 text-white">
+      <div class="container grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.24em] text-skybrand-200">Referral-Friendly Care</p>
+          <h2 class="mt-4 max-w-xl font-display text-4xl font-bold">A simpler start for patients who just want to feel better.</h2>
+          <p class="mt-4 max-w-xl text-base leading-8 text-slate-300">
+            We keep the message from the current homepage, but bring more hierarchy to it: the main promise is direct,
+            the supporting language is softened, and the action is unmistakable.
+          </p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-3">
+          <div class="rounded-[1.75rem] bg-white/10 p-5 ring-1 ring-white/10">
+            <p class="text-3xl font-extrabold">Avoid</p>
+            <p class="mt-2 text-sm leading-7 text-slate-300">Overreliance on pain medications when movement-based care can help first.</p>
+          </div>
+          <div class="rounded-[1.75rem] bg-white/10 p-5 ring-1 ring-white/10">
+            <p class="text-3xl font-extrabold">Reduce</p>
+            <p class="mt-2 text-sm leading-7 text-slate-300">Unnecessary testing by starting with a hands-on, functional evaluation.</p>
+          </div>
+          <div class="rounded-[1.75rem] bg-goldbrand-400 p-5 text-slate-950 shadow-elevated">
+            <p class="text-3xl font-extrabold">Restore</p>
+            <p class="mt-2 text-sm leading-7 text-slate-900/80">Confidence, range of motion, and strength with a clinic and home plan that fits your life.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container py-16" x-data="{ active: 0, total: 4 }" x-init="setInterval(() => active = (active + 1) % total, 6000)">
+      <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.24em] text-skybrand-700">Success Stories</p>
+          <h2 class="mt-4 font-display text-4xl font-bold text-slate-900">Patient outcomes should feel specific, not generic.</h2>
+          <p class="mt-4 max-w-lg text-base leading-8 text-slate-600">
+            Rather than burying testimonials in a long list, this version turns them into a focused rotating proof
+            section with clearer contrast and better pacing.
+          </p>
+          <div class="mt-6 flex gap-2">
+            {
+              testimonials.map((_, index) => (
+                <button
+                  type="button"
+                  class="h-2.5 rounded-full bg-slate-300 transition"
+                  x-bind:class={`active === ${index} ? 'w-10 bg-skybrand-700' : 'w-2.5'`}
+                  aria-label={`Show testimonial ${index + 1}`}
+                />
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="rounded-[2rem] bg-white p-8 shadow-elevated ring-1 ring-slate-200/70">
+          {
+            testimonials.map((testimonial, index) => (
+              <article x-show={`active === ${index}`} x-transition.opacity.duration.500ms>
+                <div class="flex items-center gap-3">
+                  <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-goldbrand-100 text-goldbrand-700">
+                    <Quote class="h-6 w-6" />
+                  </div>
+                  <div class="flex text-goldbrand-500">
+                    <Star class="h-5 w-5 fill-current" />
+                    <Star class="h-5 w-5 fill-current" />
+                    <Star class="h-5 w-5 fill-current" />
+                    <Star class="h-5 w-5 fill-current" />
+                    <Star class="h-5 w-5 fill-current" />
+                  </div>
+                </div>
+                <blockquote class="mt-6 max-w-2xl font-display text-3xl font-semibold leading-tight text-slate-900">
+                  “{testimonial.quote}”
+                </blockquote>
+                <p class="mt-6 text-sm font-bold uppercase tracking-[0.22em] text-slate-500">{testimonial.name}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="locations" class="bg-white py-16">
+      <div class="container">
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-skybrand-700">6 Convenient Locations</p>
+            <h2 class="mt-4 font-display text-4xl font-bold text-slate-900">A stronger clinic directory with clearer contact cues.</h2>
+          </div>
+          <p class="max-w-xl text-base leading-8 text-slate-600">
+            The original site surfaces each location prominently. This rebuild preserves that breadth, but replaces
+            border-heavy blocks with elevation, spacing, and accent color to improve scan speed.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {
+            locations.map((location) => (
+              <article class="overflow-hidden rounded-[2rem] bg-slate-50 shadow-card ring-1 ring-slate-200/70">
+                {
+                  location.image ? (
+                    <img src={location.image} alt={`${location.city} clinic`} class="h-44 w-full object-cover" />
+                  ) : (
+                    <div class="relative flex h-44 items-end overflow-hidden bg-slate-900 p-6">
+                      <img
+                        src="/assets/brand/logo-white.svg"
+                        alt=""
+                        class="absolute right-4 top-4 h-14 w-auto opacity-20"
+                      />
+                      <div class="relative inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-skybrand-100 ring-1 ring-white/15">
+                        <Building2 class="h-3.5 w-3.5" />
+                        CarePT Clinic
+                      </div>
+                    </div>
+                  )
+                }
+                <div class="p-6">
+                  <div class="flex items-start justify-between gap-4">
+                    <div>
+                      <h3 class="text-xl font-bold text-slate-900">{location.city}</h3>
+                      <p class="mt-3 text-sm leading-7 text-slate-600">
+                        {location.address}<br />{location.zip}
+                      </p>
+                    </div>
+                    <span class="rounded-full bg-skybrand-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-skybrand-800">
+                      Open weekdays
+                    </span>
+                  </div>
+                  <div class="mt-5 space-y-3 text-sm text-slate-600">
+                    <p class="flex items-center gap-3">
+                      <Phone class="h-4 w-4 text-skybrand-700" />
+                      {location.phone}
+                    </p>
+                    <p class="flex items-center gap-3">
+                      <Mail class="h-4 w-4 text-skybrand-700" />
+                      Fax {location.fax}
+                    </p>
+                    <p class="flex items-start gap-3">
+                      <Clock3 class="mt-0.5 h-4 w-4 text-skybrand-700" />
+                      <span>{location.hours}</span>
+                    </p>
+                  </div>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section id="team" class="container py-16">
+      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.24em] text-skybrand-700">Meet Our Team</p>
+          <h2 class="mt-4 font-display text-4xl font-bold text-slate-900">Real clinicians, recognizable faces, and stronger visual trust.</h2>
+        </div>
+        <p class="max-w-xl text-base leading-8 text-slate-600">
+          The homepage now treats the staff section like a confidence builder, not an afterthought. Headshots are given
+          enough room, and the name hierarchy is stronger than the supporting credential line.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          team.map((member) => (
+            <article class="overflow-hidden rounded-[2rem] bg-white shadow-card ring-1 ring-slate-200/70">
+              <img src={member.image} alt={member.name} class="h-72 w-full object-cover object-top" />
+              <div class="border-l-4 border-goldbrand-400 p-5">
+                <p class="text-xl font-bold text-slate-900">{member.name}</p>
+                <p class="mt-1 text-sm font-semibold uppercase tracking-[0.18em] text-skybrand-700">{member.role}</p>
+                <p class="mt-3 text-sm text-slate-500">{member.clinic}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section id="appointment" class="bg-slate-950 py-16 text-white">
+      <div class="container grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-[0.24em] text-skybrand-200">Request an Appointment</p>
+          <h2 class="mt-4 max-w-xl font-display text-4xl font-bold">A Netlify-ready form that keeps the conversion path obvious.</h2>
+          <p class="mt-4 max-w-xl text-base leading-8 text-slate-300">
+            This section replaces a generic call-to-action button with a complete lead capture form, while keeping the
+            copy short and the trust signals close to the action.
+          </p>
+          <div class="mt-8 grid gap-4 sm:grid-cols-2">
+            <div class="rounded-[1.75rem] bg-white/5 p-5 ring-1 ring-white/10">
+              <Users class="h-6 w-6 text-goldbrand-400" />
+              <p class="mt-4 font-bold">One-on-one, patient-centered care</p>
+              <p class="mt-2 text-sm leading-7 text-slate-300">Treatment plans designed around your movement goals, pain triggers, and schedule.</p>
+            </div>
+            <div class="rounded-[1.75rem] bg-white/5 p-5 ring-1 ring-white/10">
+              <ShieldCheck class="h-6 w-6 text-goldbrand-400" />
+              <p class="mt-4 font-bold">Straightforward next steps</p>
+              <p class="mt-2 text-sm leading-7 text-slate-300">We keep intake friction low so patients can ask for help without guessing what comes next.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-[2rem] bg-white p-8 text-slate-900 shadow-elevated">
+          <form name="appointment" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="grid gap-5">
+            <input type="hidden" name="form-name" value="appointment" />
+            <input type="hidden" name="bot-field" />
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                First name
+                <input
+                  type="text"
+                  name="first-name"
+                  required
+                  class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-skybrand-500 focus:bg-white"
+                />
+              </label>
+              <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                Last name
+                <input
+                  type="text"
+                  name="last-name"
+                  required
+                  class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-skybrand-500 focus:bg-white"
+                />
+              </label>
+            </div>
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                Email
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-skybrand-500 focus:bg-white"
+                />
+              </label>
+              <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                Phone
+                <input
+                  type="tel"
+                  name="phone"
+                  required
+                  class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-skybrand-500 focus:bg-white"
+                />
+              </label>
+            </div>
+            <div class="grid gap-5 sm:grid-cols-2">
+              <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                Preferred clinic
+                <select
+                  name="preferred-clinic"
+                  class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-skybrand-500 focus:bg-white"
+                >
+                  <option>Bogalusa, LA</option>
+                  <option>Covington, LA</option>
+                  <option>Franklinton, LA</option>
+                  <option>Ponchatoula, LA</option>
+                  <option>Hattiesburg, MS</option>
+                  <option>Sumrall, MS</option>
+                </select>
+              </label>
+              <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                Are you a new patient?
+                <select
+                  name="patient-status"
+                  class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-skybrand-500 focus:bg-white"
+                >
+                  <option>Yes</option>
+                  <option>No</option>
+                </select>
+              </label>
+            </div>
+            <label class="grid gap-2 text-sm font-semibold text-slate-700">
+              Tell us what you need help with
+              <textarea
+                name="message"
+                rows="5"
+                class="rounded-[1.5rem] border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-skybrand-500 focus:bg-white"
+              ></textarea>
+            </label>
+            <button
+              type="submit"
+              class="inline-flex items-center justify-center gap-2 rounded-full bg-skybrand-700 px-6 py-3.5 text-sm font-bold text-white shadow-elevated transition hover:bg-skybrand-800"
+            >
+              Send Appointment Request
+              <ArrowRight class="h-4 w-4" />
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
