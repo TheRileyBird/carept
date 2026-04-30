@@ -274,39 +274,6 @@ const team = [
             one-on-one guidance across Louisiana and Mississippi.
           </p>
 
-          <div class="mt-8 grid gap-4 sm:grid-cols-2">
-            <div class="rounded-3xl bg-white p-5 shadow-card ring-1 ring-slate-200/70">
-              <p class="text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">At CarePT</p>
-              <ul class="mt-4 space-y-3 text-sm leading-6 text-slate-600">
-                <li class="flex gap-3">
-                  <CircleCheckBig class="mt-0.5 h-5 w-5 shrink-0 text-goldbrand-500" />
-                  We help you avoid addictive pain medications.
-                </li>
-                <li class="flex gap-3">
-                  <CircleCheckBig class="mt-0.5 h-5 w-5 shrink-0 text-goldbrand-500" />
-                  We focus on treatment before expensive, unnecessary testing.
-                </li>
-                <li class="flex gap-3">
-                  <CircleCheckBig class="mt-0.5 h-5 w-5 shrink-0 text-goldbrand-500" />
-                  We show you options beyond surgery and specialist referrals.
-                </li>
-              </ul>
-            </div>
-            <div class="rounded-3xl border border-slate-200/70 bg-slate-900 p-5 text-white shadow-elevated">
-              <p class="text-sm font-semibold uppercase tracking-[0.24em] text-skybrand-200">Quick Access</p>
-              <div class="mt-4 space-y-4">
-                <div>
-                  <p class="text-3xl font-extrabold">6</p>
-                  <p class="text-sm text-slate-300">convenient clinic locations</p>
-                </div>
-                <div>
-                  <p class="text-3xl font-extrabold">Thousands</p>
-                  <p class="text-sm text-slate-300">of patients treated with hands-on care</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div class="mt-8 flex flex-col gap-4 sm:flex-row">
             <a
               href="#appointment"
@@ -327,54 +294,75 @@ const team = [
 
         <div class="relative">
           <div class="absolute -left-8 top-12 hidden h-24 w-24 rounded-3xl bg-goldbrand-300/40 blur-2xl lg:block"></div>
-          <div class="grid gap-4 sm:grid-cols-2">
-            <div class="overflow-hidden rounded-[2rem] bg-white shadow-elevated ring-1 ring-slate-200/70 sm:col-span-2">
-              <div class="grid gap-0 md:grid-cols-[1.1fr_0.9fr]">
-                <img
-                  src="/assets/clinics/hattiesburg.jpg"
-                  alt="Care Physical Therapy clinic exterior"
-                  class="h-72 w-full object-cover"
-                />
-                <div class="flex flex-col justify-between bg-slate-900 p-6 text-white">
-                  <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.24em] text-skybrand-200">Welcome to CarePT</p>
-                    <h2 class="mt-3 text-2xl font-bold">You may not need a referral to begin therapy.</h2>
-                    <p class="mt-3 max-w-sm text-sm leading-7 text-slate-300">
-                      Scheduling is quick and easy. Call the clinic nearest you or send an appointment request today.
-                    </p>
-                  </div>
-                  <div class="mt-6 grid gap-3 text-sm text-slate-200">
-                    <div class="flex items-center gap-3">
-                      <MapPin class="h-4 w-4 text-goldbrand-400" />
-                      Covington, Bogalusa, Franklinton, Ponchatoula, Hattiesburg, Sumrall
-                    </div>
-                    <div class="flex items-center gap-3">
-                      <Phone class="h-4 w-4 text-goldbrand-400" />
-                      Multiple clinics with early and extended weekday hours
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="overflow-hidden rounded-[2rem] bg-white shadow-elevated ring-1 ring-slate-200/70">
             <img
-              src="/assets/clinics/franklinton.jpg"
-              alt="Franklinton clinic entrance"
-              class="h-48 w-full rounded-[1.75rem] object-cover shadow-card ring-1 ring-slate-200/70"
-            />
-            <img
-              src="/assets/clinics/ponchatoula.jpg"
-              alt="Ponchatoula clinic building"
-              class="h-48 w-full rounded-[1.75rem] object-cover shadow-card ring-1 ring-slate-200/70"
+              src="/assets/clinics/hattiesburg.jpg"
+              alt="Care Physical Therapy clinic exterior"
+              class="h-[26rem] w-full object-cover object-center"
             />
           </div>
         </div>
       </div>
     </section>
 
+    <section class="pb-8">
+      <div class="container">
+        <div class="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
+          <div class="rounded-[2rem] bg-white p-6 shadow-card ring-1 ring-slate-200/70 lg:p-8">
+            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Welcome to CarePT</p>
+            <div class="mt-5 grid gap-6 lg:grid-cols-[1fr_0.9fr]">
+              <div>
+                <h2 class="max-w-lg text-3xl font-bold leading-tight text-slate-900">You may not need a referral to begin therapy.</h2>
+                <p class="mt-3 max-w-xl text-sm leading-7 text-slate-600">
+                  Scheduling is quick and easy. Call the clinic nearest you or send an appointment request today. We
+                  focus on treatment before expensive, unnecessary testing and help patients explore options beyond
+                  medication-heavy care.
+                </p>
+              </div>
+              <div class="grid gap-3 text-sm text-slate-600">
+                <div class="flex items-start gap-3 rounded-2xl bg-slate-50 px-4 py-4">
+                  <MapPin class="mt-0.5 h-4 w-4 shrink-0 text-skybrand-700" />
+                  Covington, Bogalusa, Franklinton, Ponchatoula, Hattiesburg, and Sumrall clinics
+                </div>
+                <div class="flex items-start gap-3 rounded-2xl bg-slate-50 px-4 py-4">
+                  <Phone class="mt-0.5 h-4 w-4 shrink-0 text-skybrand-700" />
+                  Multiple clinics with early and extended weekday hours
+                </div>
+                <div class="flex items-start gap-3 rounded-2xl bg-slate-50 px-4 py-4">
+                  <CircleCheckBig class="mt-0.5 h-4 w-4 shrink-0 text-goldbrand-500" />
+                  Individualized treatment plans built around your pain points and movement goals
+                </div>
+              </div>
+            </div>
+          </div>
+          <aside class="rounded-[2rem] bg-slate-900 p-6 text-white shadow-elevated lg:p-8">
+            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-skybrand-200">Quick Access</p>
+            <div class="mt-6 space-y-6">
+              <div>
+                <p class="text-4xl font-extrabold">6</p>
+                <p class="mt-1 text-sm text-slate-300">convenient clinic locations</p>
+              </div>
+              <div>
+                <p class="text-4xl font-extrabold">Thousands</p>
+                <p class="mt-1 text-sm text-slate-300">of patients treated with hands-on care</p>
+              </div>
+              <a
+                href="#appointment"
+                class="inline-flex items-center gap-2 rounded-full bg-goldbrand-400 px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-goldbrand-300"
+              >
+                Request an Appointment
+                <ArrowRight class="h-4 w-4" />
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
     <section id="conditions" class="border-y border-slate-200/70 bg-white/70 py-16">
       <div class="container">
-        <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
+        <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.82fr_1.18fr]">
+          <div class="lg:pr-6">
             <p class="text-sm font-semibold uppercase tracking-[0.24em] text-skybrand-700">First-Time Patients</p>
             <h2 class="mt-4 max-w-lg font-display text-4xl font-bold leading-tight text-slate-900">
               We make physical therapy feel clear, structured, and less intimidating.
@@ -405,44 +393,46 @@ const team = [
 
     <section
       id="services"
-      class="container py-16"
+      class="bg-slate-950 py-16 text-white"
       x-data
       x-intersect.once="$el.querySelectorAll('[data-reveal]').forEach((node, index) => setTimeout(() => node.classList.remove('translate-y-6','opacity-0'), index * 70))"
     >
-      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p class="text-sm font-semibold uppercase tracking-[0.24em] text-skybrand-700">Expert Services</p>
-          <h2 class="mt-4 max-w-2xl font-display text-4xl font-bold text-slate-900">Hands-on treatment supported by practical exercise and patient education.</h2>
+      <div class="container">
+        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-skybrand-200">Expert Services</p>
+            <h2 class="mt-4 max-w-2xl font-display text-4xl font-bold text-white">Hands-on treatment supported by practical exercise and patient education.</h2>
+          </div>
+          <p class="max-w-xl text-base leading-8 text-slate-300">
+            This section now contrasts the lighter first-time-patient block with a darker treatment-focused surface, so
+            the page feels paced instead of repetitive.
+          </p>
         </div>
-        <p class="max-w-xl text-base leading-8 text-slate-600">
-          The original site lists a broad service menu. This rebuild tightens the presentation into clear, feature-first
-          cards so patients can scan value quickly without losing the breadth of care offered.
-        </p>
-      </div>
 
-      <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {
-          services.map((service) => {
-            const Icon = service.icon;
+        <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {
+            services.map((service) => {
+              const Icon = service.icon;
 
-            return (
-              <article
-                data-reveal
-                class="translate-y-6 rounded-[2rem] border border-slate-200/70 bg-white p-6 opacity-0 shadow-card transition duration-500"
-              >
-                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-skybrand-50 text-skybrand-700 ring-1 ring-skybrand-100">
-                  <Icon class="h-6 w-6" />
-                </div>
-                <h3 class="mt-5 text-xl font-bold text-slate-900">{service.title}</h3>
-                <p class="mt-3 text-sm leading-7 text-slate-600">{service.copy}</p>
-                <a href="#appointment" class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-skybrand-700">
-                  Ask about this service
-                  <MoveRight class="h-4 w-4" />
-                </a>
-              </article>
-            );
-          })
-        }
+              return (
+                <article
+                  data-reveal
+                  class="translate-y-6 rounded-[2rem] border border-white/10 bg-white/5 p-6 opacity-0 shadow-card transition duration-500"
+                >
+                  <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-skybrand-500/10 text-skybrand-200 ring-1 ring-skybrand-300/20">
+                    <Icon class="h-6 w-6" />
+                  </div>
+                  <h3 class="mt-5 text-xl font-bold text-white">{service.title}</h3>
+                  <p class="mt-3 text-sm leading-7 text-slate-300">{service.copy}</p>
+                  <a href="#appointment" class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-goldbrand-300">
+                    Ask about this service
+                    <MoveRight class="h-4 w-4" />
+                  </a>
+                </article>
+              );
+            })
+          }
+        </div>
       </div>
     </section>
 
@@ -473,7 +463,11 @@ const team = [
       </div>
     </section>
 
-    <section class="container py-16" x-data="{ active: 0, total: 4 }" x-init="setInterval(() => active = (active + 1) % total, 6000)">
+    <section
+      class="container py-16"
+      x-data="{ active: 0, total: 4, timer: null, start() { this.timer = setInterval(() => this.active = (this.active + 1) % this.total, 6000) }, go(index) { this.active = index; clearInterval(this.timer); this.start(); } }"
+      x-init="start()"
+    >
       <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
           <p class="text-sm font-semibold uppercase tracking-[0.24em] text-skybrand-700">Success Stories</p>
@@ -489,6 +483,7 @@ const team = [
                   type="button"
                   class="h-2.5 rounded-full bg-slate-300 transition"
                   x-bind:class={`active === ${index} ? 'w-10 bg-skybrand-700' : 'w-2.5'`}
+                  x-on:click={`go(${index})`}
                   aria-label={`Show testimonial ${index + 1}`}
                 />
               ))
@@ -497,9 +492,14 @@ const team = [
         </div>
 
         <div class="rounded-[2rem] bg-white p-8 shadow-elevated ring-1 ring-slate-200/70">
+          <div class="relative min-h-[18rem]">
           {
             testimonials.map((testimonial, index) => (
-              <article x-show={`active === ${index}`} x-transition.opacity.duration.500ms>
+              <article
+                x-show={`active === ${index}`}
+                x-transition.opacity.duration.500ms
+                class="absolute inset-0"
+              >
                 <div class="flex items-center gap-3">
                   <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-goldbrand-100 text-goldbrand-700">
                     <Quote class="h-6 w-6" />
@@ -519,6 +519,7 @@ const team = [
               </article>
             ))
           }
+          </div>
         </div>
       </div>
     </section>
@@ -732,4 +733,36 @@ const team = [
       </div>
     </section>
   </main>
+
+  <footer class="bg-slate-900 py-14 text-white">
+    <div class="container">
+      <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <div>
+          <img src="/assets/brand/logo-white.svg" alt="Care Physical Therapy" class="h-16 w-auto" />
+          <p class="mt-5 max-w-md text-sm leading-7 text-slate-300">
+            Individualized physical therapy across Louisiana and Mississippi, focused on hands-on care, practical
+            recovery plans, and easier access to treatment close to home.
+          </p>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {
+            locations.map((location) => (
+              <div class="rounded-[1.5rem] bg-white/5 p-5 ring-1 ring-white/10">
+                <p class="font-bold text-white">{location.city}</p>
+                <p class="mt-2 text-sm text-slate-300">{location.address}</p>
+                <p class="text-sm text-slate-300">{location.zip}</p>
+                <a href={`tel:${location.phone.replace(/\D/g, "")}`} class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-skybrand-200">
+                  <Phone class="h-4 w-4" />
+                  {location.phone}
+                </a>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <div class="mt-10 border-t border-white/10 pt-6 text-sm text-slate-400">
+        © 2026 Care Physical Therapy. All rights reserved.
+      </div>
+    </div>
+  </footer>
 </BaseLayout>
