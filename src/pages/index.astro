@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
 import {
   ArrowRight,
   Brain,
@@ -22,6 +23,23 @@ import {
   Waves,
   X,
 } from "@lucide/astro";
+import logo from "../assets/brand/logo.svg";
+import logoWhite from "../assets/brand/logo-white.svg";
+import heroImg from "../assets/team/team.jpg";
+import franklintonClinic from "../assets/clinics/franklinton.jpg";
+import hattiesburgClinic from "../assets/clinics/hattiesburg.jpg";
+import ponchatoulaClinic from "../assets/clinics/ponchatoula.jpg";
+import manualTherapyImage from "../assets/editorial/manual-therapy.jpeg";
+import rehabSessionImage from "../assets/editorial/rehab-session.jpeg";
+import treatmentRoomImage from "../assets/editorial/treatment-room.jpeg";
+import billyCochranImage from "../assets/team/billy-cochran.png";
+import brianCochranImage from "../assets/team/brian-cochran.jpg";
+import byronBlackwellImage from "../assets/team/byron-blackwell.jpg";
+import heathVillereImage from "../assets/team/heath-villere.jpg";
+import jonathanMitchellImage from "../assets/team/jonathan-mitchell.jpg";
+import kelvinMccainImage from "../assets/team/kelvin-mccain.jpg";
+import ryanTateImage from "../assets/team/ryan-tate.jpg";
+import stephanieElkinsImage from "../assets/team/stephanie-elkins.jpg";
 
 const locations = [
   {
@@ -47,7 +65,7 @@ const locations = [
     address: "44626 J Meadie Knight Drive",
     zip: "Franklinton, LA 70438",
     hours: "Mon/Wed/Fri 8:00 AM-5:00 PM • Tue/Thu 8:00 AM-1:00 PM",
-    image: "/assets/clinics/franklinton.jpg",
+    image: franklintonClinic,
   },
   {
     city: "Ponchatoula, LA",
@@ -56,7 +74,7 @@ const locations = [
     address: "1625 Hwy 51 Suite C",
     zip: "Ponchatoula, LA 70454",
     hours: "Mon-Thu 8:00 AM-6:00 PM • Fri 8:00 AM-2:30 PM",
-    image: "/assets/clinics/ponchatoula.jpg",
+    image: ponchatoulaClinic,
   },
   {
     city: "Hattiesburg, MS",
@@ -65,7 +83,7 @@ const locations = [
     address: "52 98 Place Blvd.",
     zip: "Hattiesburg, MS 39402",
     hours: "Mon-Thu 6:30 AM-6:00 PM • Fri 6:30 AM-12:30 PM",
-    image: "/assets/clinics/hattiesburg.jpg",
+    image: hattiesburgClinic,
   },
   {
     city: "Sumrall, MS",
@@ -147,59 +165,56 @@ const team = [
     name: "Byron Blackwell",
     role: "MPT",
     clinic: "Bogalusa Clinic",
-    image: "/assets/team/byron-blackwell.jpg",
+    image: byronBlackwellImage,
   },
   {
     name: "Brian Cochran",
     role: "PT, MCMT",
     clinic: "Covington Clinic",
-    image: "/assets/team/brian-cochran.jpg",
+    image: brianCochranImage,
   },
   {
     name: "C. Ryan Tate",
     role: "DPT",
     clinic: "Covington Clinic",
-    image: "/assets/team/ryan-tate.jpg",
+    image: ryanTateImage,
   },
   {
     name: "Heath Villere",
     role: "DPT",
     clinic: "Covington Clinic",
-    image: "/assets/team/heath-villere.jpg",
+    image: heathVillereImage,
   },
   {
     name: "Kelvin McCain",
     role: "PT",
     clinic: "Franklinton Clinic",
-    image: "/assets/team/kelvin-mccain.jpg",
+    image: kelvinMccainImage,
   },
   {
     name: "Jonathan Mitchell",
     role: "PT, ATC",
     clinic: "Ponchatoula Clinic",
-    image: "/assets/team/jonathan-mitchell.jpg",
+    image: jonathanMitchellImage,
   },
   {
     name: "Billy Cochran",
     role: "PT, CSCS",
     clinic: "Hattiesburg Clinic",
-    image: "/assets/team/billy-cochran.png",
+    image: billyCochranImage,
   },
   {
     name: "Stephanie Elkins",
     role: "DPT",
     clinic: "Sumrall Clinic",
-    image: "/assets/team/stephanie-elkins.jpg",
+    image: stephanieElkinsImage,
   },
 ];
 
 const editorialImages = {
-  manualTherapy:
-    "https://images.pexels.com/photos/5793895/pexels-photo-5793895.jpeg?auto=compress&cs=tinysrgb&w=1200&h=900&fit=crop",
-  rehabSession:
-    "https://images.pexels.com/photos/31234755/pexels-photo-31234755.jpeg?auto=compress&cs=tinysrgb&w=1200&h=900&fit=crop",
-  treatmentRoom:
-    "https://images.pexels.com/photos/5794056/pexels-photo-5794056.jpeg?auto=compress&cs=tinysrgb&w=900&h=1200&fit=crop",
+  manualTherapy: manualTherapyImage,
+  rehabSession: rehabSessionImage,
+  treatmentRoom: treatmentRoomImage,
 };
 ---
 
@@ -210,7 +225,7 @@ const editorialImages = {
   <header class="relative border-b border-slate-200/70 bg-white/80 backdrop-blur">
     <div class="container flex items-center justify-between gap-6 py-5">
       <a href="/" class="shrink-0">
-        <img src="/assets/brand/logo.svg" alt="Care Physical Therapy" class="h-14 w-auto md:h-16" />
+        <Image src={logo} alt="Care Physical Therapy" class="h-14 w-auto md:h-16" />
       </a>
 
       <div class="hidden items-center gap-10 lg:flex">
@@ -304,8 +319,8 @@ const editorialImages = {
         <div class="relative">
           <div class="absolute -left-8 top-12 hidden h-24 w-24 rounded-3xl bg-goldbrand-300/40 blur-2xl lg:block"></div>
           <div class="overflow-hidden rounded-[2.25rem] bg-white p-3 shadow-elevated ring-1 ring-slate-200/70">
-            <img
-              src="/assets/clinics/hattiesburg.jpg"
+            <Image
+              src={heroImg}
               alt="Care Physical Therapy clinic exterior"
               class="h-[27rem] w-full rounded-[1.5rem] object-cover object-center xl:h-[31rem]"
             />
@@ -382,7 +397,7 @@ const editorialImages = {
               taking from your life and build a plan around getting it back.
             </p>
             <div class="mt-8 overflow-hidden rounded-[1.8rem] bg-white p-3 shadow-card ring-1 ring-slate-200/70">
-              <img
+              <Image
                 src={editorialImages.manualTherapy}
                 alt="Therapist guiding a patient through manual leg treatment"
                 class="h-64 w-full rounded-[1.15rem] object-cover"
@@ -457,7 +472,7 @@ const editorialImages = {
 
     <section class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 py-20 text-white">
       <div class="container">
-      <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.72fr_0.56fr_0.72fr] lg:gap-8">
+      <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2 lg:gap-8">
         <div>
           <p class="text-sm font-semibold uppercase tracking-[0.24em] text-skybrand-200">Referral-Friendly Care</p>
           <h2 class="mt-4 max-w-md font-display text-4xl font-bold leading-tight">Trusted by physicians. Chosen by patients who want real care.</h2>
@@ -465,13 +480,6 @@ const editorialImages = {
             CarePT combines strong regional physician relationships with a care experience that feels personal,
             consistent, and recovery-focused from the first phone call through the final visit.
           </p>
-        </div>
-        <div class="overflow-hidden rounded-[2rem] bg-white/5 p-3 ring-1 ring-white/10 shadow-card">
-          <img
-            src={editorialImages.rehabSession}
-            alt="Therapist assisting a patient during a rehabilitation session"
-            class="h-full min-h-[21rem] w-full rounded-[1.35rem] object-cover"
-          />
         </div>
         <div class="grid gap-4 sm:grid-cols-3">
           <div class="rounded-[1.9rem] bg-white/10 p-6 ring-1 ring-white/10 backdrop-blur-sm">
@@ -572,11 +580,11 @@ const editorialImages = {
               <article class="overflow-hidden rounded-[2rem] bg-slate-50 shadow-card ring-1 ring-slate-200/70">
                 {
                   location.image ? (
-                    <img src={location.image} alt={`${location.city} clinic`} class="h-44 w-full object-cover" />
+                    <Image src={location.image} alt={`${location.city} clinic`} class="h-44 w-full object-cover" />
                   ) : (
                     <div class="relative flex h-44 items-end overflow-hidden bg-slate-900 p-6">
-                      <img
-                        src="/assets/brand/logo-white.svg"
+                      <Image
+                        src={logoWhite}
                         alt=""
                         class="absolute right-4 top-4 h-14 w-auto opacity-20"
                       />
@@ -639,7 +647,7 @@ const editorialImages = {
         {
           team.map((member) => (
             <article class="overflow-hidden rounded-[2rem] bg-white shadow-card ring-1 ring-slate-200/70 transition duration-300 hover:-translate-y-1 hover:shadow-elevated">
-              <img src={member.image} alt={member.name} class="h-72 w-full object-cover object-top" />
+              <Image src={member.image} alt={member.name} class="h-72 w-full object-cover object-top" />
               <div class="border-l-4 border-goldbrand-400 p-6">
                 <p class="text-xl font-bold text-slate-900">{member.name}</p>
                 <p class="mt-1 text-sm font-semibold uppercase tracking-[0.18em] text-skybrand-700">{member.role}</p>
@@ -652,7 +660,7 @@ const editorialImages = {
       </div>
     </section>
 
-    <section id="appointment" class="bg-gradient-to-br from-slate-950 via-slate-900 to-skybrand-950 py-24 text-white">
+    <section id="appointment" class="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 py-24 text-white">
       <div class="container">
       <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-14">
         <div>
@@ -673,13 +681,6 @@ const editorialImages = {
               <p class="mt-4 font-bold">Trusted and low-friction to start</p>
               <p class="mt-2 text-sm leading-7 text-slate-300">Most major private insurance plans are accepted, with some cash-pay options available.</p>
             </div>
-          </div>
-          <div class="mt-8 overflow-hidden rounded-[1.9rem] bg-white/5 p-3 ring-1 ring-white/10">
-            <img
-              src={editorialImages.treatmentRoom}
-              alt="Hands-on treatment session in a calm therapy room"
-              class="h-72 w-full rounded-[1.35rem] object-cover"
-            />
           </div>
         </div>
 
@@ -779,7 +780,7 @@ const editorialImages = {
     <div class="container">
       <div class="mx-auto grid max-w-6xl gap-10 border-t border-white/10 pt-12 lg:grid-cols-[0.72fr_1.28fr]">
         <div>
-          <img src="/assets/brand/logo-white.svg" alt="Care Physical Therapy" class="h-16 w-auto" />
+          <Image src={logoWhite} alt="Care Physical Therapy" class="h-16 w-auto" />
           <p class="mt-5 max-w-sm text-sm leading-7 text-slate-300">
             Individualized, hands-on physical therapy that treats your whole body, not just your injury, delivered by a
             team where you're not a patient number, you're family.
