@@ -27,6 +27,7 @@ import franklintonClinic from "../assets/clinics/cov.jpg";
 import hattiesburgClinic from "../assets/clinics/cov1.jpg";
 import ponchatoulaClinic from "../assets/clinics/cov2.jpg";
 
+import quoteImg from "../assets/clinics/cov6.jpg";
 import manualTherapyImage from "../assets/editorial/manual-therapy.jpeg";
 import treatmentRoomImage from "../assets/editorial/treatment-room.jpeg";
 import billyCochranImage from "../assets/team/billy-cochran.png";
@@ -40,8 +41,6 @@ import stephanieElkinsImage from "../assets/team/stephanie-elkins.jpg";
 import teamHeroImage from "../assets/team/team.jpg";
 
 const insuranceCarriers = [
-  "Medicare",
-  "Medicaid",
   "Blue Cross Blue Shield",
   "UnitedHealthcare",
   "Aetna",
@@ -169,9 +168,9 @@ const team = [
             <ShieldCheck class="h-4 w-4" />
             <span class="text-xs font-bold uppercase tracking-[0.1em] text-slate-700">Doctor-trusted · Insurance accepted</span>
           </div>
-          <h1 class="max-w-2xl font-display text-[clamp(46px,5vw,125px)] font-black leading-[0.94] tracking-[-0.038em] text-slate-950">
+          <h1 class="max-w-2xl font-display text-[clamp(46px,5vw,125px)] font-black leading-[0.94] tracking-[-0.038em] text-sky-700">
             Heal<span class="text-skybrand-600">.</span><br>
-            Strengthen<span class="text-skybrand-600">.</span><br>
+            <span class="text-skybrand-800">Strengthen</span><span class="text-skybrand-600">.</span><br>
             <span class="animate-animated-text bg-[linear-gradient(-45deg,#3da8cf,#1B4F8A,#3da8cf)] bg-[length:300%] bg-clip-text text-transparent">Thrive</span><span class="text-skybrand-600">.</span>
           </h1>
           <p class="mt-7 max-w-xl text-[17px] text-slate-700">
@@ -195,7 +194,7 @@ const team = [
       </section>
 
       <section class="relative overflow-hidden bg-slate-950" aria-label="Accepted insurance carriers">
-        <span class="absolute left-6 top-1/2 z-10 flex -translate-y-1/2 items-center gap-2 rounded-full border border-skybrand-500/40 bg-slate-950 px-4 py-2 text-[11px] font-black uppercase tracking-[0.12em] text-skybrand-100 shadow-[0_0_0_8px_rgb(2_6_23),16px_0_24px_rgb(2_6_23)]">
+        <span class="absolute left-6 top-1/2 z-10 flex -translate-y-1/2 items-center gap-2 rounded-full border border-skybrand-500/40 bg-slate-950 px-4 py-2 text-[11px] font-black uppercase tracking-[0.12em] text-skybrand-100 shadow-[16px_0_24px_rgb(2_6_23)] sm:left-10">
           <span class="h-2 w-2 rounded-full bg-skybrand-400"></span>
           Insurance accepted
         </span>
@@ -227,7 +226,7 @@ const team = [
             </p>
             <h2 class="max-w-xl font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-slate-950">
               More Than a Clinic.<br>
-              We're <span class="animate-animated-text bg-[linear-gradient(-45deg,#3da8cf,#1B4F8A,#3da8cf)] bg-[length:300%] bg-clip-text text-transparent">Your</span> Team.
+              We're <span class="animate-animated-text bg-[linear-gradient(-45deg,#3da8cf,#1B4F8A,#3da8cf)] bg-[length:300%] bg-clip-text text-transparent">Your Team</span>.
             </h2>
             <p class="mt-5 max-w-xl text-[17px] text-slate-600">
               At Care Physical Therapy, pain is never just physical. It touches how you sleep, how you move, and how you show up for the people who matter most.
@@ -247,12 +246,12 @@ const team = [
         </div>
       </section>
 
-      <section id="services" class="relative overflow-hidden bg-[#FAF8F4] px-6 py-24 lg:px-10 xl:px-16">
+      <section id="services" class="relative overflow-hidden bg-slate-50 px-6 py-24 lg:px-10 xl:px-16">
         <div class="mx-auto max-w-[1280px]">
           <div class="relative mx-auto mb-14 max-w-3xl text-center">
             <p class="mb-4 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-600">What We Treat</p>
             <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em]">
-              Whatever Is Hold You Back<br>We Can Help.
+              Whatever Is Hold You Back<br><span class="animate-animated-text bg-[linear-gradient(-45deg,#3da8cf,#1B4F8A,#3da8cf)] bg-[length:300%] bg-clip-text text-transparent">We Can Help</span>.
             </h2>
             <p class="mx-auto mt-5 max-w-xl text-base text-slate-600">Our licensed therapists have successfully treated thousands of patients across these conditions and many more.</p>
           </div>
@@ -274,26 +273,26 @@ const team = [
         </div>
       </section>
 
-      <section class="px-6 py-24 lg:px-10 xl:px-16">
-        <div class="mx-auto max-w-[1280px]">
-        <div class="mx-auto mb-16 max-w-3xl text-center">
-          <p class="mb-4 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-600">Your Recovery Journey</p>
-          <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em]">Feel Like Yourself Again</h2>
-        </div>
-        <div class="recovery-steps relative grid gap-8 lg:grid-cols-4">
-          <div class="recovery-line" aria-hidden="true"></div>
-          {steps.map(([number, title, copy], index) => (
-              <article class="relative z-10 rounded-3xl bg-white p-6 text-center shadow-[0_18px_50px_-40px_rgba(15,23,42,0.55)] ring-1 ring-slate-200/80">
-                <div class:list={["relative z-20 mx-auto mb-6 grid h-16 w-16 place-items-center rounded-full border-[6px] border-white text-xl font-black text-white shadow-[0_12px_28px_-14px_rgba(15,79,138,0.8)]", index % 2 ? "bg-skybrand-500" : "bg-skybrand-800"]}>
-                  {number}
-                </div>
-                <h3 class="text-base font-extrabold text-slate-950">{title}</h3>
-                <p class="mt-3 text-[13px] leading-6 text-slate-600">{copy}</p>
-              </article>
-          ))}
-        </div>
-        </div>
-      </section>
+      <!--<section class="px-6 py-24 lg:px-10 xl:px-16">-->
+      <!--  <div class="mx-auto max-w-[1280px]">-->
+      <!--  <div class="mx-auto mb-16 max-w-3xl text-center">-->
+      <!--    <p class="mb-4 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-600">Your Recovery Journey</p>-->
+      <!--    <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em]">Feel Like <span class="animate-animated-text bg-[linear-gradient(-45deg,#3da8cf,#1B4F8A,#3da8cf)] bg-[length:300%] bg-clip-text text-transparent">Yourself</span> Again</h2>-->
+      <!--  </div>-->
+      <!--  <div class="recovery-steps relative grid gap-8 lg:grid-cols-4">-->
+      <!--    <div class="recovery-line" aria-hidden="true"></div>-->
+      <!--    {steps.map(([number, title, copy], index) => (-->
+      <!--        <article class="relative z-10 rounded-3xl bg-white p-6 text-center shadow-[0_18px_50px_-40px_rgba(15,23,42,0.55)] ring-1 ring-slate-200/80">-->
+      <!--          <div class:list={["relative z-20 mx-auto mb-6 grid h-16 w-16 place-items-center rounded-full border-[6px] border-white text-xl font-black text-white shadow-[0_12px_28px_-14px_rgba(15,79,138,0.8)]", index % 2 ? "bg-skybrand-500" : "bg-skybrand-800"]}>-->
+      <!--            {number}-->
+      <!--          </div>-->
+      <!--          <h3 class="text-base font-extrabold text-slate-950">{title}</h3>-->
+      <!--          <p class="mt-3 text-[13px] leading-6 text-slate-600">{copy}</p>-->
+      <!--        </article>-->
+      <!--    ))}-->
+      <!--  </div>-->
+      <!--  </div>-->
+      <!--</section>-->
 
       <section id="stories" class="bg-slate-950 px-6 py-24 text-white lg:px-10 xl:px-16">
         <div class="mx-auto max-w-[1280px]">
@@ -306,7 +305,7 @@ const team = [
             {reviews.map(([initial, name, detail, quote]) => (
                 <article class="rounded-2xl border border-white/10 bg-white/5 p-7 transition hover:bg-white/10">
                   <div class="mb-4 tracking-[0.16em] text-[#d49a16]">★★★★★</div>
-                  <p class="text-[15px] italic leading-7 text-white/85">"{quote}"</p>
+                  <p class="text-[15px] leading-7 text-white/85">"{quote}"</p>
                   <div class="mt-6 flex items-center gap-3">
                     <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-skybrand-500 to-skybrand-800 font-display font-bold">{initial}</div>
                     <div>
@@ -339,8 +338,8 @@ const team = [
             <p class="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-700 before:block before:h-0.5 before:w-7 before:rounded-full before:bg-skybrand-600">
               Referral-friendly care
             </p>
-            <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-slate-950">
-              Trusted by physicians.
+            <h2 class="text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-slate-950">
+              <span class="animate-animated-text bg-[linear-gradient(-45deg,#3da8cf,#1B4F8A,#3da8cf)] bg-[length:300%] bg-clip-text text-transparent">Trusted</span> by physicians.
             </h2>
             <p class="mt-5 max-w-xl text-[17px] text-slate-600">
               A strong referral experience depends on clarity: the patient understands the plan, the therapist tracks
@@ -358,23 +357,22 @@ const team = [
                       <span class="h-1.5 w-1.5 rounded-full bg-skybrand-500 shadow-[0_0_0_3px_rgba(224,242,254,1)]"></span>
                       {label}
                     </span>
-                    <strong class="mt-1 block font-display text-2xl font-extrabold leading-tight text-slate-950">{title}</strong>
+                    <strong class="mt-1 block text-2xl font-extrabold leading-tight text-slate-950">{title}</strong>
                     <p class="mt-2 text-sm leading-6 text-slate-600">{copy}</p>
                   </div>
                 </article>
               ))}
             </div>
           </div>
-          <aside class="relative flex min-h-[520px] flex-col justify-end overflow-hidden rounded-[48px_48px_48px_150px] p-8 text-white shadow-elevated sm:p-12">
-            <Image src={teamHeroImage} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover object-center" />
-            <div class="absolute inset-0 bg-gradient-to-b from-slate-950/20 to-slate-950/85"></div>
+          <aside class="relative flex min-h-[520px] flex-col justify-end overflow-hidden rounded-[48px_48px_48px_48px] p-8 text-white shadow-elevated sm:p-12">
+            <Image src={quoteImg} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover object-center" />
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-950/60 to-slate-950/95"></div>
             <div class="relative">
               <span class="inline-flex rounded-full bg-white/15 px-3 py-2 text-[11px] font-black uppercase tracking-[0.1em] text-skybrand-100 backdrop-blur">Patient outcome</span>
               <Quote class="mt-8 h-10 w-10 text-white/30" />
               <blockquote class="mt-4 max-w-xl font-display text-[clamp(30px,4vw,56px)] font-bold leading-none tracking-[-0.03em]">
-                "I won't be having surgery and I give the credit to my friends at CARE Physical Therapy."
+                I won't be having surgery and I give the credit to my friends at CARE Physical Therapy.
               </blockquote>
-              <cite class="mt-5 block text-sm not-italic text-skybrand-100">Patient testimonial</cite>
             </div>
           </aside>
         </div>
@@ -385,7 +383,7 @@ const team = [
           <div class="mx-auto mb-14 max-w-4xl text-center">
             <p class="mb-4 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-700">Six convenient locations</p>
             <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-slate-950">
-              Find the CarePT clinic closest to your recovery.
+              Ready to <span class="animate-animated-text bg-[linear-gradient(-45deg,#3da8cf,#1B4F8A,#3da8cf)] bg-[length:300%] bg-clip-text text-transparent">feel better</span>? We're nearby.
             </h2>
             <p class="mx-auto mt-5 max-w-2xl text-[17px] text-slate-600">
               CarePT serves communities across Louisiana and Mississippi with six clinics, clear contact points, and a
@@ -427,29 +425,25 @@ const team = [
         </div>
       </section>
 
-      <section id="team" class="bg-white px-6 py-24 lg:px-10 xl:px-16">
+      <section id="team" class="bg-slate-800 px-6 py-24 text-white lg:px-10 xl:px-16">
         <div class="mx-auto max-w-[1280px]">
           <div class="mb-10 grid items-end gap-8 lg:grid-cols-[0.92fr_0.6fr]">
             <div>
-              <p class="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-700 before:block before:h-0.5 before:w-7 before:rounded-full before:bg-skybrand-600">
+              <p class="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.12em] text-white before:block before:h-0.5 before:w-7 before:rounded-full before:bg-skybrand-400">
                 Meet the clinicians
               </p>
-              <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-slate-950">
-                Expertise with the warmth that makes recovery feel human.
+              <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-white">
+                Expertise with the care
               </h2>
             </div>
-            <p class="text-[17px] text-slate-600">
-              CarePT's clinicians bring licensed expertise and local trust to the treatment room, translating clinical
-              plans into progress patients can feel.
-            </p>
           </div>
           <div class="grid auto-cols-[minmax(178px,1fr)] grid-flow-col gap-4 overflow-x-auto pb-3">
             {team.map((member) => (
-              <article class="min-w-[178px] overflow-hidden rounded-3xl border border-slate-200 bg-slate-50">
+              <article class="min-w-[178px] overflow-hidden rounded-3xl border border-white/10 bg-white/5">
                 <Image src={member.image} alt={member.name} class="aspect-[0.82] w-full object-cover object-top" />
                 <div class="p-4">
-                  <h3 class="text-sm font-extrabold text-slate-950">{member.name}</h3>
-                  <p class="mt-1 text-xs text-slate-500">{member.role}</p>
+                  <h3 class="text-sm font-extrabold text-white">{member.name}</h3>
+                  <p class="mt-1 text-xs text-slate-300">{member.role}</p>
                 </div>
               </article>
             ))}
@@ -457,31 +451,31 @@ const team = [
         </div>
       </section>
 
-      <section id="appointment" class="bg-slate-800 px-6 py-24 text-white lg:px-10 xl:px-16">
+      <section id="appointment" class="bg-white px-6 py-24 text-slate-950 lg:px-10 xl:px-16">
         <div class="mx-auto grid max-w-[1280px] items-center gap-12 lg:grid-cols-[0.76fr_0.88fr]">
           <div>
-            <p class="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.12em] text-white before:block before:h-0.5 before:w-7 before:rounded-full before:bg-skybrand-400">
+            <p class="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-700 before:block before:h-0.5 before:w-7 before:rounded-full before:bg-skybrand-600">
               Request an appointment
             </p>
-            <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em]">
-              Start with a team that sees the whole picture.
+            <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-slate-950">
+              Start with a team that sees the <span class="animate-animated-text bg-[linear-gradient(-45deg,#3da8cf,#1B4F8A,#3da8cf)] bg-[length:300%] bg-clip-text text-transparent">whole picture</span>.
             </h2>
-            <p class="mt-5 max-w-xl text-[17px] text-slate-300">
+            <p class="mt-5 max-w-xl text-[17px] text-slate-600">
               Tell us where you are, what hurts, and which clinic fits your week. CarePT will help you take the next step
               toward pain relief, better movement, and more confidence.
             </p>
             <div class="mt-8 grid gap-3 sm:grid-cols-2">
-              <div class="rounded-r-2xl border-l-2 border-skybrand-400 bg-white/5 p-5 text-sm leading-6 text-slate-300">
-                <strong class="mb-1 block text-white">Whole-body treatment</strong>
+              <div class="rounded-r-2xl border-l-2 border-skybrand-400 bg-slate-50 p-5 text-sm leading-6 text-slate-600">
+                <strong class="mb-1 block text-slate-950">Whole-body treatment</strong>
                 Care that connects your symptoms, goals, habits, and daily demands.
               </div>
-              <div class="rounded-r-2xl border-l-2 border-skybrand-400 bg-white/5 p-5 text-sm leading-6 text-slate-300">
-                <strong class="mb-1 block text-white">Trusted regional access</strong>
+              <div class="rounded-r-2xl border-l-2 border-skybrand-400 bg-slate-50 p-5 text-sm leading-6 text-slate-600">
+                <strong class="mb-1 block text-slate-950">Trusted regional access</strong>
                 Six clinics across Louisiana and Mississippi with one clinical standard.
               </div>
             </div>
           </div>
-          <form class="rounded-[34px] bg-white p-8 text-slate-950 shadow-elevated" name="appointment" method="POST" data-netlify="true" netlify-honeypot="bot-field" aria-label="Appointment request">
+          <form class="rounded-[34px] border border-slate-200 bg-slate-50 p-8 text-slate-950 shadow-elevated" name="appointment" method="POST" data-netlify="true" netlify-honeypot="bot-field" aria-label="Appointment request">
             <input type="hidden" name="form-name" value="appointment" />
             <input type="hidden" name="bot-field" />
             <div class="grid gap-4 sm:grid-cols-2">
@@ -502,16 +496,16 @@ const team = [
       </section>
     </main>
 
-    <section class="relative min-h-[150px] overflow-hidden bg-slate-800 px-6 pt-7 lg:px-10 xl:px-16" aria-label="Ready to start your recovery">
-      <svg class="absolute inset-x-0 bottom-0 h-[118px] w-full text-slate-950" viewBox="0 0 2048 180" preserveAspectRatio="none" aria-hidden="true">
+    <section class="relative min-h-[150px] overflow-hidden bg-white px-6 pt-7 lg:px-10 xl:px-16" aria-label="Ready to start your recovery">
+      <svg class="absolute inset-x-0 bottom-[-1px] h-[119px] w-full text-slate-950" viewBox="0 0 2048 180" preserveAspectRatio="none" aria-hidden="true">
         <path
           fill="currentColor"
           d="M0 0H575C660 0 642 104 724 104H2048V180H0V0Z"
         />
       </svg>
-      <div class="relative z-10 mx-auto flex max-w-[1280px] justify-center text-center sm:justify-start sm:pl-[34%] sm:text-left lg:pl-[36%]">
-        <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-white">
-          Ready to Start Your Recovery?
+      <div class="relative z-10 mx-auto flex max-w-[1280px] justify-center text-center sm:justify-start pl-[34%] sm:text-left">
+        <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-slate-950">
+          Ready to <span class="animate-animated-text bg-[linear-gradient(-45deg,#3da8cf,#1B4F8A,#3da8cf)] bg-[length:300%] bg-clip-text text-transparent">Start Your Recovery</span>?
         </h2>
       </div>
     </section>
