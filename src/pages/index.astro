@@ -2,8 +2,22 @@
 import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { Image } from "astro:assets";
+import {
+  ArrowRight,
+  Building2,
+  CalendarDays,
+  CircleCheckBig,
+  Clock3,
+  Mail,
+  MapPin,
+  Phone,
+  Quote,
+  ShieldCheck,
+  Star,
+  Users,
+} from "@lucide/astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import logo from "../assets/brand/logo.svg";
+import SiteHeader from "../components/SiteHeader.astro";
 import logoWhite from "../assets/brand/logo-white.svg";
 import franklintonClinic from "../assets/clinics/franklinton.jpg";
 import hattiesburgClinic from "../assets/clinics/hattiesburg.jpg";
@@ -54,6 +68,8 @@ const clinics = [
     copy: "One of six CarePT clinics serving patients across south Mississippi.",
     image: hattiesburgClinic,
     alt: "CarePT Hattiesburg clinic exterior",
+    phone: "(601) 296-0199",
+    address: "52 98 Place Blvd.",
   },
   {
     title: "Covington, LA",
@@ -61,6 +77,8 @@ const clinics = [
     copy: "129 Corporate Dr. · (985) 249-6111",
     image: treatmentRoomImage,
     alt: "CarePT treatment room",
+    phone: "(985) 249-6111",
+    address: "129 Corporate Dr.",
   },
   {
     title: "Bogalusa, LA",
@@ -68,6 +86,8 @@ const clinics = [
     copy: "1202 Sunset Dr. · (985) 735-1426",
     image: manualTherapyImage,
     alt: "CarePT hands-on therapy",
+    phone: "(985) 735-1426",
+    address: "1202 Sunset Dr.",
   },
   {
     title: "Franklinton, LA",
@@ -75,6 +95,8 @@ const clinics = [
     copy: "44626 J Meadie Knight Drive · (985) 795-1746",
     image: franklintonClinic,
     alt: "CarePT Franklinton clinic",
+    phone: "(985) 795-1746",
+    address: "44626 J Meadie Knight Drive",
   },
   {
     title: "Ponchatoula, LA",
@@ -82,6 +104,8 @@ const clinics = [
     copy: "1625 Hwy 51 Suite C · (985) 386-2222",
     image: ponchatoulaClinic,
     alt: "CarePT Ponchatoula clinic",
+    phone: "(985) 386-2222",
+    address: "1625 Hwy 51 Suite C",
   },
   {
     title: "Sumrall, MS",
@@ -89,6 +113,8 @@ const clinics = [
     copy: "4877 Mississippi 589 · (601) 758-3333",
     image: rehabSessionImage,
     alt: "CarePT rehab session",
+    phone: "(601) 758-3333",
+    address: "4877 Mississippi 589",
   },
 ];
 
@@ -102,208 +128,256 @@ const team = [
   { name: "Billy Cochran", role: "PT, CSCS — Hattiesburg", image: billyCochranImage },
   { name: "Stephanie Elkins", role: "DPT — Sumrall", image: stephanieElkinsImage },
 ];
+
+const serviceCards = [
+  {
+    image: manualTherapyImage,
+    alt: "Manual therapy session",
+    tag: "Hands-on care",
+    title: "Manual Therapy",
+    copy: "Skilled joint mobilization and soft-tissue techniques that restore movement and reduce pain at the source.",
+  },
+  {
+    image: rehabSessionImage,
+    alt: "Rehabilitation session",
+    tag: "Guided exercise",
+    title: "Therapeutic Rehabilitation",
+    copy: "Individual progressions for strength, mobility, and control from first session to confident independence.",
+  },
+  {
+    image: treatmentRoomImage,
+    alt: "CarePT treatment room",
+    tag: "Specialized programs",
+    title: "Aquatic & Specialized Care",
+    copy: "Aquatic therapy, dry needling, gait retraining, and balance programs tailored to your clinical picture.",
+  },
+  {
+    image: manualTherapyImage,
+    alt: "Aquatic therapy session",
+    tag: "Low impact",
+    title: "Aquatic Therapy",
+    copy: "Low-impact movement that rebuilds joint tolerance without aggravating pain.",
+  },
+  {
+    image: rehabSessionImage,
+    alt: "Gait and balance training",
+    tag: "Steady movement",
+    title: "Gait & Balance Training",
+    copy: "Practical retraining for steadier walking, fall prevention, and everyday independence.",
+  },
+  {
+    image: treatmentRoomImage,
+    alt: "Trigger point dry needling treatment room",
+    tag: "Targeted care",
+    title: "Trigger Point Dry Needling",
+    copy: "Targeted treatment for muscle tension and referred pain when clinically appropriate.",
+  },
+];
 ---
 
 <BaseLayout
   title="CarePT Physical Therapy"
   description="CarePT helps patients move through pain, surgery, injury, and uncertainty with hands-on treatment, clear plans, and attentive care."
 >
-  <div class="page">
-    <header class="nav is-at-top" data-site-nav>
-      <div class="shell nav-inner">
-        <a href="#" aria-label="CarePT home"><Image class="logo" src={logo} alt="Care Physical Therapy" /></a>
-        <nav class="links" aria-label="Primary">
-          <a href="#services">Services</a>
-          <a href="#conditions">Conditions</a>
-          <a href="#locations">Locations</a>
-          <a href="#team">Team</a>
-          <a href="#appointment">Appointment</a>
-        </nav>
-        <div class="actions">
-          <a class="btn" href="tel:+19852496111">Call CarePT</a>
-          <a class="btn primary" href="#appointment">Request a visit</a>
-        </div>
-      </div>
-    </header>
+  <div class="overflow-hidden bg-white pt-[78px] text-slate-900">
+    <SiteHeader />
 
     <main>
-      <section class="hero">
-        <div class="hero-layout">
-          <div class="hero-copy-panel">
-            <p class="eyebrow">Care Physical Therapy</p>
-            <h1>Get Your <span class="accent-word">Life</span> Back<br>Expert Care, Close to Home</h1>
-            <p class="lead">CarePT helps patients move through pain, surgery, injury, and uncertainty with hands-on treatment, clear plans, and the kind of attention that makes recovery feel possible again.</p>
-            <div class="hero-ctas">
-              <a class="btn primary" href="#appointment">Request an appointment</a>
-              <a class="btn" href="#locations">Find a clinic</a>
-            </div>
+      <section class="grid min-h-[calc(100svh-78px)] overflow-hidden bg-gradient-to-b from-skybrand-200 via-skybrand-50 to-white lg:grid-cols-2">
+        <div class="flex flex-col justify-center px-6 py-20 sm:px-10 lg:px-[calc((100vw-min(1280px,100vw-48px))/2+24px)] lg:pr-16">
+          <p class="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-700 before:block before:h-0.5 before:w-7 before:rounded-full before:bg-skybrand-600">
+            Care Physical Therapy
+          </p>
+          <h1 class="max-w-2xl font-display text-[clamp(46px,5vw,66px)] font-black leading-[0.94] tracking-[-0.038em] text-slate-950">
+            Get Your <span class="animate-animated-text bg-[linear-gradient(-45deg,#80be41,#3da8cf,#1B4F8A,#3da8cf)] bg-[length:300%] bg-clip-text text-transparent">Life</span> Back<br />
+            Expert Care, Close to Home
+          </h1>
+          <p class="mt-7 max-w-xl text-[17px] leading-8 text-slate-700">
+            CarePT helps patients move through pain, surgery, injury, and uncertainty with hands-on treatment, clear plans,
+            and the kind of attention that makes recovery feel possible again.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#appointment" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-skybrand-800 px-6 text-sm font-extrabold text-white shadow-card transition hover:-translate-y-0.5 hover:bg-skybrand-900">
+              <CalendarDays class="h-4 w-4" />
+              Request an appointment
+            </a>
+            <a href="#locations" class="inline-flex min-h-11 items-center justify-center rounded-full border border-skybrand-800/20 bg-white/70 px-6 text-sm font-extrabold text-skybrand-900 transition hover:-translate-y-0.5 hover:border-skybrand-800/40 hover:bg-white">
+              Find a clinic
+            </a>
           </div>
-          <div class="hero-media">
-            <figure class="hero-photo">
-              {hasHeroVideo ? (
-                <video autoplay muted loop playsinline preload="metadata" poster={rehabSessionImage.src} aria-label="Physical therapy session in progress">
-                  <source src={heroVideo} type="video/mp4" />
-                </video>
-              ) : (
-                <Image src={rehabSessionImage} alt="CarePT therapist assisting a patient" />
-              )}
-            </figure>
-            <aside class="floating-panel">
-              <span>Our Mission</span>
-              <p>Inspired to heal. Empowered to live.</p>
-            </aside>
-          </div>
+        </div>
+
+        <div class="relative min-h-[520px] overflow-hidden bg-slate-900 lg:min-h-[calc(100svh-78px)]">
+          {hasHeroVideo ? (
+            <video autoplay muted loop playsinline preload="metadata" poster={rehabSessionImage.src} aria-label="Physical therapy session in progress" class="absolute inset-0 h-full w-full object-cover">
+              <source src={heroVideo} type="video/mp4" />
+            </video>
+          ) : (
+            <Image src={rehabSessionImage} alt="CarePT therapist assisting a patient" class="absolute inset-0 h-full w-full object-cover" />
+          )}
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/10 to-transparent"></div>
+          <aside class="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/15 bg-slate-950/75 p-6 text-white shadow-elevated backdrop-blur md:left-8 md:right-auto md:max-w-sm">
+            <span class="text-[11px] font-black uppercase tracking-[0.12em] text-skybrand-200">Our Mission</span>
+            <p class="mt-2 font-display text-2xl font-bold leading-tight">Inspired to heal. Empowered to live.</p>
+          </aside>
         </div>
       </section>
 
-      <div class="trust-strip" aria-label="Accepted insurance carriers">
-        <span class="trust-label-badge" aria-hidden="true">Insurance accepted</span>
-        <div class="trust-track">
-          <div class="trust-list" aria-hidden="true">
+      <section class="relative overflow-hidden bg-slate-950" aria-label="Accepted insurance carriers">
+        <span class="absolute left-6 top-1/2 z-10 flex -translate-y-1/2 items-center gap-2 rounded-full border border-skybrand-500/40 bg-slate-950 px-4 py-2 text-[11px] font-black uppercase tracking-[0.12em] text-skybrand-100 shadow-[0_0_0_8px_rgb(2_6_23),16px_0_24px_rgb(2_6_23)]">
+          <span class="h-2 w-2 rounded-full bg-skybrand-400"></span>
+          Insurance accepted
+        </span>
+        <div class="flex min-h-[58px] items-center overflow-hidden pl-48">
+          <div class="flex w-max animate-marquee items-center motion-reduce:animate-none">
             {[...insuranceCarriers, ...insuranceCarriers].map((carrier) => (
               <>
-                <span class="trust-item">{carrier}</span><span class="trust-sep"></span>
+                <span class="whitespace-nowrap px-7 text-[13px] font-bold text-white/70">{carrier}</span>
+                <span class="h-1 w-1 shrink-0 rounded-full bg-skybrand-400/70"></span>
               </>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
-      <section class="conditions" id="conditions">
-        <div class="shell conditions-layout">
-          <div class="portrait-stack">
-            <figure class="image-a"><Image src={manualTherapyImage} alt="Therapist guiding a patient through hands-on care" /></figure>
-            <figure class="image-b"><Image src={treatmentRoomImage} alt="CarePT treatment room" /></figure>
+      <section id="conditions" class="border-b border-slate-200 bg-white px-6 py-24 lg:px-10 xl:px-16">
+        <div class="mx-auto grid max-w-[1280px] items-center gap-16 lg:grid-cols-[0.82fr_1fr]">
+          <div class="relative min-h-[420px] lg:min-h-[540px]">
+            <figure class="absolute inset-y-0 left-0 right-16 overflow-hidden rounded-[110px_28px_28px_28px] bg-slate-100 shadow-elevated">
+              <Image src={manualTherapyImage} alt="Therapist guiding a patient through hands-on care" class="h-full w-full object-cover" />
+            </figure>
+            <figure class="absolute bottom-0 right-0 w-[52%] overflow-hidden rounded-[28px_28px_90px_28px] border-[10px] border-white bg-slate-100 shadow-elevated">
+              <Image src={treatmentRoomImage} alt="CarePT treatment room" class="aspect-[0.84] h-full w-full object-cover" />
+            </figure>
           </div>
           <div>
-            <p class="eyebrow">First-time patients</p>
-            <h2>If physical therapy failed you before, this should feel different.</h2>
-            <p class="section-copy">Rushed appointments and generic exercise sheets are not enough when pain is changing the way you work, sleep, walk, or care for your family. CarePT begins with a comprehensive evaluation, then builds a plan around the way your body moves and the outcome you need back.</p>
-            <div class="cond-grid" aria-label="Common conditions we treat">
+            <p class="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-700 before:block before:h-0.5 before:w-7 before:rounded-full before:bg-skybrand-600">
+              First-time patients
+            </p>
+            <h2 class="max-w-xl font-display text-[clamp(36px,4vw,48px)] font-bold leading-[0.98] tracking-[-0.035em] text-slate-950">
+              If physical therapy failed you before, this should feel different.
+            </h2>
+            <p class="mt-5 max-w-xl text-[17px] leading-8 text-slate-600">
+              Rushed appointments and generic exercise sheets are not enough when pain is changing the way you work,
+              sleep, walk, or care for your family. CarePT begins with a comprehensive evaluation, then builds a plan
+              around the way your body moves and the outcome you need back.
+            </p>
+            <div class="mt-8 grid gap-3 sm:grid-cols-2" aria-label="Common conditions we treat">
               {conditions.map((condition) => (
-                <div class="cond-item"><span class="cond-dot"></span>{condition}</div>
+                <div class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-bold leading-tight text-slate-800">
+                  <span class="h-2 w-2 shrink-0 rounded-full bg-skybrand-500"></span>
+                  {condition}
+                </div>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section class="services" id="services">
-        <div class="shell">
-          <div class="services-head">
-            <p class="eyebrow">Expert services</p>
-            <h2>Hands-on expertise. No cookie-cutter care.</h2>
-            <p>CarePT combines manual therapy, guided strengthening, movement retraining, and practical home programs so patients understand what is happening and what progress should feel like.</p>
+      <section id="services" class="bg-slate-50 px-6 py-24 lg:px-10 xl:px-16">
+        <div class="mx-auto max-w-[1280px]">
+          <div class="mx-auto mb-14 max-w-4xl text-center">
+            <p class="mb-4 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-700">Expert services</p>
+            <h2 class="font-display text-[clamp(38px,5vw,68px)] font-bold leading-[0.98] tracking-[-0.035em] text-slate-950">
+              Hands-on expertise. No cookie-cutter care.
+            </h2>
+            <p class="mx-auto mt-5 max-w-2xl text-[17px] leading-8 text-slate-600">
+              CarePT combines manual therapy, guided strengthening, movement retraining, and practical home programs so
+              patients understand what is happening and what progress should feel like.
+            </p>
           </div>
-          <div class="service-cards">
-            <article class="service-card">
-              <div class="sc-image"><Image src={manualTherapyImage} alt="Manual therapy session" /></div>
-              <div class="sc-body">
-                <span class="sc-tag">Hands-on care</span>
-                <h3>Manual Therapy</h3>
-                <p>Skilled joint mobilization and soft-tissue techniques that restore movement and reduce pain at the source.</p>
-              </div>
-            </article>
-            <article class="service-card">
-              <div class="sc-image"><Image src={rehabSessionImage} alt="Rehabilitation session" /></div>
-              <div class="sc-body">
-                <span class="sc-tag">Guided exercise</span>
-                <h3>Therapeutic Rehabilitation</h3>
-                <p>Individual progressions for strength, mobility, and control - from first session to confident independence.</p>
-              </div>
-            </article>
-            <article class="service-card">
-              <div class="sc-image"><Image src={treatmentRoomImage} alt="CarePT treatment room" /></div>
-              <div class="sc-body">
-                <span class="sc-tag">Specialized programs</span>
-                <h3>Aquatic &amp; Specialized Care</h3>
-                <p>Aquatic therapy, dry needling, gait retraining, and balance programs tailored to your clinical picture.</p>
-              </div>
-            </article>
-          </div>
-          <div class="service-extras">
-            <article class="service-card service-extra">
-              <div class="sc-image"><Image src={manualTherapyImage} alt="Aquatic therapy session" /></div>
-              <div class="sc-body">
-                <span class="sc-tag">Low impact</span>
-                <h3>Aquatic Therapy</h3>
-                <p>Low-impact movement that rebuilds joint tolerance without aggravating pain.</p>
-              </div>
-            </article>
-            <article class="service-card service-extra">
-              <div class="sc-image"><Image src={rehabSessionImage} alt="Gait and balance training" /></div>
-              <div class="sc-body">
-                <span class="sc-tag">Steady movement</span>
-                <h3>Gait &amp; Balance Training</h3>
-                <p>Practical retraining for steadier walking, fall prevention, and everyday independence.</p>
-              </div>
-            </article>
-            <article class="service-card service-extra">
-              <div class="sc-image"><Image src={treatmentRoomImage} alt="Trigger point dry needling treatment room" /></div>
-              <div class="sc-body">
-                <span class="sc-tag">Targeted care</span>
-                <h3>Trigger Point Dry Needling</h3>
-                <p>Targeted treatment for muscle tension and referred pain when clinically appropriate.</p>
-              </div>
-            </article>
+          <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {serviceCards.map((service) => (
+              <article class="overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-card transition hover:-translate-y-1 hover:shadow-elevated">
+                <div class="aspect-[16/10] overflow-hidden">
+                  <Image src={service.image} alt={service.alt} class="h-full w-full object-cover transition duration-500 hover:scale-105" />
+                </div>
+                <div class="p-7">
+                  <span class="inline-flex rounded-full border border-skybrand-200 bg-skybrand-50 px-3 py-1 text-[11px] font-black uppercase tracking-[0.1em] text-skybrand-800">
+                    {service.tag}
+                  </span>
+                  <h3 class="mt-4 font-display text-2xl font-bold leading-tight text-slate-950">{service.title}</h3>
+                  <p class="mt-3 text-[14.5px] leading-7 text-slate-600">{service.copy}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      <section class="referral">
-        <div class="shell referral-wrap">
-          <div class="referral-copy">
-            <p class="eyebrow">Referral-friendly care</p>
-            <h2>Trusted by physicians.</h2>
-            <p class="section-copy">A strong referral experience depends on clarity: the patient understands the plan, the therapist tracks what is changing, and the physician can trust that care is progressing with purpose.</p>
-            <div class="care-path">
-              <article class="path-point">
-                <span>Evaluate</span>
-                <strong>The whole picture</strong>
-                <p>Pain, movement, work demands, sleep, surgery history, and patient goals.</p>
-              </article>
-              <article class="path-point">
-                <span>Treat</span>
-                <strong>With intention</strong>
-                <p>Hands-on care, targeted exercise, and education patients can actually use.</p>
-              </article>
-              <article class="path-point">
-                <span>Restore</span>
-                <strong>Daily confidence</strong>
-                <p>Less pain, steadier movement, and a body patients trust again.</p>
-              </article>
+      <section class="bg-white px-6 py-24 lg:px-10 xl:px-16">
+        <div class="mx-auto grid max-w-[1280px] items-center gap-16 lg:grid-cols-[0.88fr_1fr]">
+          <div>
+            <p class="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-700 before:block before:h-0.5 before:w-7 before:rounded-full before:bg-skybrand-600">
+              Referral-friendly care
+            </p>
+            <h2 class="font-display text-[clamp(38px,5vw,68px)] font-bold leading-[0.98] tracking-[-0.035em] text-slate-950">
+              Trusted by physicians.
+            </h2>
+            <p class="mt-5 max-w-xl text-[17px] leading-8 text-slate-600">
+              A strong referral experience depends on clarity: the patient understands the plan, the therapist tracks
+              what is changing, and the physician can trust that care is progressing with purpose.
+            </p>
+            <div class="mt-9 divide-y divide-skybrand-100 border-y border-skybrand-100">
+              {[
+                ["Evaluate", "The whole picture", "Pain, movement, work demands, sleep, surgery history, and patient goals."],
+                ["Treat", "With intention", "Hands-on care, targeted exercise, and education patients can actually use."],
+                ["Restore", "Daily confidence", "Less pain, steadier movement, and a body patients trust again."],
+              ].map(([label, title, copy]) => (
+                <article class="grid grid-cols-[30px_1fr] gap-x-4 py-5">
+                  <span class="mt-1 h-3 w-3 rounded-full bg-skybrand-500 shadow-[0_0_0_7px_rgba(224,242,254,1)]"></span>
+                  <div>
+                    <span class="text-[11px] font-black uppercase tracking-[0.08em] text-skybrand-600">{label}</span>
+                    <strong class="mt-1 block font-display text-2xl leading-tight text-slate-950">{title}</strong>
+                    <p class="mt-2 text-sm leading-6 text-slate-600">{copy}</p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
-          <aside class="quote-card">
-            <div class="quote-card-bg">
-              <Image src={manualTherapyImage} alt="" aria-hidden="true" />
+          <aside class="relative flex min-h-[520px] flex-col justify-end overflow-hidden rounded-[48px_48px_48px_150px] p-8 text-white shadow-elevated sm:p-12">
+            <Image src={manualTherapyImage} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover object-center" />
+            <div class="absolute inset-0 bg-gradient-to-b from-slate-950/20 to-slate-950/85"></div>
+            <div class="relative">
+              <span class="inline-flex rounded-full bg-white/15 px-3 py-2 text-[11px] font-black uppercase tracking-[0.1em] text-skybrand-100 backdrop-blur">Patient outcome</span>
+              <Quote class="mt-8 h-10 w-10 text-white/30" />
+              <blockquote class="mt-4 max-w-xl font-display text-[clamp(30px,4vw,56px)] font-bold leading-none tracking-[-0.03em]">
+                "I won't be having surgery and I give the credit to my friends at CARE Physical Therapy."
+              </blockquote>
+              <cite class="mt-5 block text-sm not-italic text-skybrand-100">Patient testimonial</cite>
             </div>
-            <span class="quote-kicker">Patient outcome</span>
-            <blockquote>"I won't be having surgery and I give the credit to my friends at CARE Physical Therapy."</blockquote>
-            <cite>Patient testimonial</cite>
           </aside>
         </div>
       </section>
 
-      <section class="locations" id="locations">
-        <div class="shell">
-          <div class="locations-top">
-            <p class="eyebrow">Six convenient locations</p>
-            <h2>Find the CarePT clinic closest to your recovery.</h2>
-            <p>CarePT serves communities across Louisiana and Mississippi with six clinics, clear contact points, and a consistent clinical standard from one location to the next.</p>
+      <section id="locations" class="bg-slate-50 px-6 py-24 lg:px-10 xl:px-16">
+        <div class="mx-auto max-w-[1280px]">
+          <div class="mx-auto mb-14 max-w-4xl text-center">
+            <p class="mb-4 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-700">Six convenient locations</p>
+            <h2 class="font-display text-[clamp(40px,5vw,58px)] font-bold leading-[0.98] tracking-[-0.035em] text-slate-950">
+              Find the CarePT clinic closest to your recovery.
+            </h2>
+            <p class="mx-auto mt-5 max-w-2xl text-[17px] leading-8 text-slate-600">
+              CarePT serves communities across Louisiana and Mississippi with six clinics, clear contact points, and a
+              consistent clinical standard from one location to the next.
+            </p>
           </div>
-          <div class="location-river">
-            <figure class="clinic-feature">
-              <Image id="clinic-image" src={hattiesburgClinic} alt="CarePT Hattiesburg clinic exterior" />
-              <figcaption class="clinic-caption">
-                <h3 id="clinic-title">Hattiesburg, MS</h3>
-                <p id="clinic-copy">One of six CarePT clinics serving patients across south Mississippi.</p>
+          <div class="grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
+            <figure class="relative min-h-[440px] overflow-hidden rounded-[38px] bg-skybrand-900 shadow-elevated lg:min-h-[660px]">
+              <Image id="clinic-image" src={hattiesburgClinic} alt="CarePT Hattiesburg clinic exterior" class="absolute inset-0 h-full w-full object-cover transition duration-300" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent"></div>
+              <figcaption class="absolute bottom-8 left-8 right-8 text-white">
+                <h3 id="clinic-title" class="font-display text-4xl font-bold">Hattiesburg, MS</h3>
+                <p id="clinic-copy" class="mt-2 text-sm text-skybrand-100">One of six CarePT clinics serving patients across south Mississippi.</p>
               </figcaption>
             </figure>
-            <div class="location-list">
+            <div class="grid gap-3 lg:grid-rows-6">
               {clinics.map((clinic, index) => (
                 <button
-                  class:list={["location-item", { "is-active": index === 0 }]}
+                  class:list={[
+                    "location-item group relative flex min-h-[92px] flex-col justify-center rounded-2xl border p-5 text-left transition hover:-translate-y-0.5 hover:border-skybrand-400 hover:bg-white hover:shadow-card focus:outline-none focus:ring-2 focus:ring-skybrand-400",
+                    index === 0 ? "is-active border-skybrand-800 bg-skybrand-800 text-white shadow-card" : "border-slate-200 bg-white/80 text-slate-900",
+                  ]}
                   type="button"
                   data-title={clinic.title}
                   data-copy={clinic.copy}
@@ -311,8 +385,11 @@ const team = [
                   data-alt={clinic.alt}
                   aria-pressed={index === 0 ? "true" : "false"}
                 >
-                  <span class="location-name">{clinic.title}</span>
-                  <span class="location-detail">{clinic.detail}</span>
+                  <span class="location-name font-bold">{clinic.title}</span>
+                  <span class:list={["location-detail mt-1 text-sm", index === 0 ? "text-skybrand-100" : "text-slate-500"]}>{clinic.detail}</span>
+                  <span class:list={["location-state absolute right-5 top-1/2 hidden -translate-y-1/2 text-[11px] font-black uppercase tracking-[0.08em] sm:block", index === 0 ? "text-skybrand-100" : "text-skybrand-600 opacity-0 group-hover:opacity-100"]}>
+                    {index === 0 ? "Selected" : "View clinic"}
+                  </span>
                 </button>
               ))}
             </div>
@@ -320,434 +397,155 @@ const team = [
         </div>
       </section>
 
-      <section class="team" id="team">
-        <div class="shell">
-          <div class="team-head">
+      <section id="team" class="bg-white px-6 py-24 lg:px-10 xl:px-16">
+        <div class="mx-auto max-w-[1280px]">
+          <div class="mb-10 grid items-end gap-8 lg:grid-cols-[0.92fr_0.6fr]">
             <div>
-              <p class="eyebrow">Meet the clinicians</p>
-              <h2>Expertise with the warmth that makes recovery feel human.</h2>
+              <p class="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-700 before:block before:h-0.5 before:w-7 before:rounded-full before:bg-skybrand-600">
+                Meet the clinicians
+              </p>
+              <h2 class="font-display text-[clamp(38px,5vw,68px)] font-bold leading-[0.98] tracking-[-0.035em] text-slate-950">
+                Expertise with the warmth that makes recovery feel human.
+              </h2>
             </div>
-            <p class="section-copy team-copy">CarePT's clinicians bring licensed expertise and local trust to the treatment room, translating clinical plans into progress patients can feel.</p>
+            <p class="text-[17px] leading-8 text-slate-600">
+              CarePT's clinicians bring licensed expertise and local trust to the treatment room, translating clinical
+              plans into progress patients can feel.
+            </p>
           </div>
-          <div class="team-scroll">
+          <div class="grid auto-cols-[minmax(178px,1fr)] grid-flow-col gap-4 overflow-x-auto pb-3">
             {team.map((member) => (
-              <article class="person">
-                <Image src={member.image} alt={member.name} />
-                <div><h3>{member.name}</h3><p>{member.role}</p></div>
+              <article class="min-w-[178px] overflow-hidden rounded-3xl border border-slate-200 bg-slate-50">
+                <Image src={member.image} alt={member.name} class="aspect-[0.82] w-full object-cover object-top" />
+                <div class="p-4">
+                  <h3 class="text-sm font-extrabold text-slate-950">{member.name}</h3>
+                  <p class="mt-1 text-xs text-slate-500">{member.role}</p>
+                </div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section class="appointment" id="appointment">
-        <div class="shell appointment-layout">
+      <section id="appointment" class="bg-slate-950 px-6 py-24 text-white lg:px-10 xl:px-16">
+        <div class="mx-auto grid max-w-[1280px] items-center gap-12 lg:grid-cols-[0.76fr_0.88fr]">
           <div>
-            <p class="eyebrow">Request an appointment</p>
-            <h2>Start with a team that sees the whole picture.</h2>
-            <p class="section-copy">Tell us where you are, what hurts, and which clinic fits your week. CarePT will help you take the next step toward pain relief, better movement, and more confidence.</p>
-            <div class="appt-promises">
-              <div class="appt-promise"><strong>Whole-body treatment</strong>Care that connects your symptoms, goals, habits, and daily demands.</div>
-              <div class="appt-promise"><strong>Trusted regional access</strong>Six clinics across Louisiana and Mississippi with one clinical standard.</div>
+            <p class="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.12em] text-white before:block before:h-0.5 before:w-7 before:rounded-full before:bg-skybrand-400">
+              Request an appointment
+            </p>
+            <h2 class="font-display text-[clamp(38px,5vw,68px)] font-bold leading-[0.98] tracking-[-0.035em]">
+              Start with a team that sees the whole picture.
+            </h2>
+            <p class="mt-5 max-w-xl text-[17px] leading-8 text-slate-300">
+              Tell us where you are, what hurts, and which clinic fits your week. CarePT will help you take the next step
+              toward pain relief, better movement, and more confidence.
+            </p>
+            <div class="mt-8 grid gap-3 sm:grid-cols-2">
+              <div class="rounded-r-2xl border-l-2 border-skybrand-400 bg-white/5 p-5 text-sm leading-6 text-slate-300">
+                <strong class="mb-1 block text-white">Whole-body treatment</strong>
+                Care that connects your symptoms, goals, habits, and daily demands.
+              </div>
+              <div class="rounded-r-2xl border-l-2 border-skybrand-400 bg-white/5 p-5 text-sm leading-6 text-slate-300">
+                <strong class="mb-1 block text-white">Trusted regional access</strong>
+                Six clinics across Louisiana and Mississippi with one clinical standard.
+              </div>
             </div>
           </div>
-          <form class="form-card" name="appointment" method="POST" data-netlify="true" netlify-honeypot="bot-field" aria-label="Appointment request">
+          <form class="rounded-[34px] bg-white p-8 text-slate-950 shadow-elevated" name="appointment" method="POST" data-netlify="true" netlify-honeypot="bot-field" aria-label="Appointment request">
             <input type="hidden" name="form-name" value="appointment" />
             <input type="hidden" name="bot-field" />
-            <div class="form-grid">
-              <div><label for="first-name">First name</label><input id="first-name" name="first-name" autocomplete="given-name" required /></div>
-              <div><label for="last-name">Last name</label><input id="last-name" name="last-name" autocomplete="family-name" required /></div>
-              <div><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required /></div>
-              <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" required /></div>
-              <div><label for="location">Preferred clinic</label><select id="location" name="preferred-clinic"><option>Covington, LA</option><option>Bogalusa, LA</option><option>Franklinton, LA</option><option>Ponchatoula, LA</option><option>Hattiesburg, MS</option><option>Sumrall, MS</option></select></div>
-              <div><label for="patient">New patient?</label><select id="patient" name="patient-status"><option>Yes</option><option>No</option><option>Not sure</option></select></div>
-              <div class="wide"><label for="notes">What do you need help with?</label><textarea id="notes" name="message"></textarea></div>
+            <div class="grid gap-4 sm:grid-cols-2">
+              <label class="grid gap-2 text-xs font-black text-slate-800">First name<input class="min-h-11 rounded-xl border border-slate-200 bg-slate-50 px-3 outline-none transition focus:border-skybrand-500" name="first-name" autocomplete="given-name" required /></label>
+              <label class="grid gap-2 text-xs font-black text-slate-800">Last name<input class="min-h-11 rounded-xl border border-slate-200 bg-slate-50 px-3 outline-none transition focus:border-skybrand-500" name="last-name" autocomplete="family-name" required /></label>
+              <label class="grid gap-2 text-xs font-black text-slate-800">Email<input class="min-h-11 rounded-xl border border-slate-200 bg-slate-50 px-3 outline-none transition focus:border-skybrand-500" name="email" type="email" autocomplete="email" required /></label>
+              <label class="grid gap-2 text-xs font-black text-slate-800">Phone<input class="min-h-11 rounded-xl border border-slate-200 bg-slate-50 px-3 outline-none transition focus:border-skybrand-500" name="phone" type="tel" autocomplete="tel" required /></label>
+              <label class="grid gap-2 text-xs font-black text-slate-800">Preferred clinic<select class="min-h-11 rounded-xl border border-slate-200 bg-slate-50 px-3 outline-none transition focus:border-skybrand-500" name="preferred-clinic"><option>Covington, LA</option><option>Bogalusa, LA</option><option>Franklinton, LA</option><option>Ponchatoula, LA</option><option>Hattiesburg, MS</option><option>Sumrall, MS</option></select></label>
+              <label class="grid gap-2 text-xs font-black text-slate-800">New patient?<select class="min-h-11 rounded-xl border border-slate-200 bg-slate-50 px-3 outline-none transition focus:border-skybrand-500" name="patient-status"><option>Yes</option><option>No</option><option>Not sure</option></select></label>
+              <label class="grid gap-2 text-xs font-black text-slate-800 sm:col-span-2">What do you need help with?<textarea class="min-h-28 rounded-2xl border border-slate-200 bg-slate-50 px-3 py-3 outline-none transition focus:border-skybrand-500" name="message"></textarea></label>
             </div>
-            <button class="btn primary" type="submit">Send appointment request</button>
+            <button class="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-skybrand-800 px-6 text-sm font-extrabold text-white transition hover:bg-skybrand-900" type="submit">
+              Send appointment request
+              <ArrowRight class="h-4 w-4" />
+            </button>
           </form>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="shell">
-        <div class="footer-grid">
-          <div>
-            <Image class="logo" src={logoWhite} alt="Care Physical Therapy" />
-            <p>Individualized, hands-on physical therapy for pain, mobility, strength, balance, and confidence.</p>
-          </div>
-          <div><h3>Care</h3><p><a href="#conditions">Conditions</a></p><p><a href="#services">Services</a></p><p><a href="#appointment">Appointments</a></p></div>
-          <div><h3>Clinics</h3><p>Covington · Bogalusa · Franklinton</p><p>Ponchatoula · Hattiesburg · Sumrall</p></div>
-          <div><h3>Contact</h3><p><a href="tel:+19852496111">(985) 249-6111</a></p><p><a href="#appointment">Request a visit</a></p></div>
+    <footer class="bg-slate-900 px-6 py-14 text-white lg:px-10 xl:px-16">
+      <div class="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[0.72fr_1.28fr]">
+        <div>
+          <Image src={logoWhite} alt="Care Physical Therapy" class="h-auto w-40" />
+          <p class="mt-5 max-w-sm text-sm leading-7 text-slate-300">
+            Individualized, hands-on physical therapy for pain, mobility, strength, balance, and confidence.
+          </p>
         </div>
-        <div class="footer-base">
-          <span>© 2026 Care Physical Therapy. All rights reserved.</span>
-          <span>Louisiana &amp; Mississippi</span>
+        <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {clinics.map((clinic) => (
+            <div class="rounded-3xl bg-white/5 p-5 ring-1 ring-white/10">
+              <h3 class="font-bold text-white">{clinic.title}</h3>
+              <p class="mt-2 text-sm text-slate-300">{clinic.address}</p>
+              <a href={`tel:${clinic.phone.replace(/\D/g, "")}`} class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-skybrand-200">
+                <Phone class="h-4 w-4" />
+                {clinic.phone}
+              </a>
+            </div>
+          ))}
         </div>
+      </div>
+      <div class="mx-auto mt-10 flex max-w-[1280px] flex-col gap-2 border-t border-white/10 pt-6 text-sm text-slate-400 sm:flex-row sm:justify-between">
+        <span>© 2026 Care Physical Therapy. All rights reserved.</span>
+        <span>Louisiana & Mississippi</span>
       </div>
     </footer>
   </div>
 
   <script is:inline>
     (() => {
-      const nav = document.querySelector("[data-site-nav]");
-      if (!nav) return;
-
-      let ticking = false;
-
-      function updateNavState() {
-        const atTop = window.scrollY <= 8;
-        nav.classList.toggle("is-at-top", atTop);
-        nav.classList.toggle("is-scrolled", !atTop);
-        ticking = false;
-      }
-
-      updateNavState();
-      window.addEventListener("scroll", () => {
-        if (ticking) return;
-        ticking = true;
-        window.requestAnimationFrame(updateNavState);
-      }, { passive: true });
-    })();
-
-    (() => {
-      const river = document.querySelector(".location-river");
+      const river = document.querySelector("#locations");
       if (!river) return;
 
-      const feature = river.querySelector(".clinic-feature");
-      const image = river.querySelector("#clinic-image");
+      const feature = river.querySelector("#clinic-image");
       const title = river.querySelector("#clinic-title");
       const copy = river.querySelector("#clinic-copy");
       const buttons = Array.from(river.querySelectorAll(".location-item"));
-      let active = image?.getAttribute("src");
+      let active = feature?.getAttribute("src");
 
-      function showClinic(btn) {
-        const next = btn.dataset.image;
-        buttons.forEach((button) => {
-          const selected = button === btn;
-          button.classList.toggle("is-active", selected);
-          button.setAttribute("aria-pressed", String(selected));
-        });
+      const activeClasses = ["is-active", "border-skybrand-800", "bg-skybrand-800", "text-white", "shadow-card"];
+      const inactiveClasses = ["border-slate-200", "bg-white/80", "text-slate-900"];
 
-        if (!next || next === active || !feature || !image || !title || !copy) return;
-        active = next;
-        feature.classList.add("is-changing");
-        window.setTimeout(() => {
-          image.src = next;
-          image.alt = btn.dataset.alt || "";
-          title.textContent = btn.dataset.title || "";
-          copy.textContent = btn.dataset.copy || "";
-          feature.classList.remove("is-changing");
-        }, 140);
+      function setButtonState(button, selected) {
+        button.classList.toggle("is-active", selected);
+        button.setAttribute("aria-pressed", String(selected));
+        activeClasses.slice(1).forEach((className) => button.classList.toggle(className, selected));
+        inactiveClasses.forEach((className) => button.classList.toggle(className, !selected));
+
+        const detail = button.querySelector(".location-detail");
+        const state = button.querySelector(".location-state");
+        detail?.classList.toggle("text-skybrand-100", selected);
+        detail?.classList.toggle("text-slate-500", !selected);
+        state?.classList.toggle("text-skybrand-100", selected);
+        state?.classList.toggle("text-skybrand-600", !selected);
+        state?.classList.toggle("opacity-0", !selected);
+        if (state) state.textContent = selected ? "Selected" : "View clinic";
       }
 
-      buttons.forEach((btn) => {
-        btn.addEventListener("mouseenter", () => showClinic(btn));
-        btn.addEventListener("focus", () => showClinic(btn));
-        btn.addEventListener("click", () => showClinic(btn));
+      function showClinic(button) {
+        const next = button.dataset.image;
+        buttons.forEach((candidate) => setButtonState(candidate, candidate === button));
+        if (!next || next === active || !feature || !title || !copy) return;
+        active = next;
+        feature.setAttribute("src", next);
+        feature.setAttribute("alt", button.dataset.alt || "");
+        title.textContent = button.dataset.title || "";
+        copy.textContent = button.dataset.copy || "";
+      }
+
+      buttons.forEach((button) => {
+        button.addEventListener("mouseenter", () => showClinic(button));
+        button.addEventListener("focus", () => showClinic(button));
+        button.addEventListener("click", () => showClinic(button));
       });
     })();
   </script>
 </BaseLayout>
-
-<style>
-  :global(:root) {
-    --bg: oklch(98.5% 0.006 236);
-    --surface: oklch(100% 0 0);
-    --wash: oklch(97% 0.014 232);
-    --fg: oklch(18% 0.044 258);
-    --muted: oklch(49% 0.028 246);
-    --border: oklch(91% 0.014 234);
-    --brand: #2B9DCC;
-    --navy: #193F6F;
-    --navy-deep: oklch(15% 0.052 258);
-    --accent: oklch(74% 0.13 82);
-    --font-display: "Iowan Old Style", "Charter", Georgia, serif;
-    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  }
-
-  :global(*) { box-sizing: border-box; }
-  :global(html) { scroll-behavior: smooth; }
-  :global(body) {
-    margin: 0;
-    background: var(--bg);
-    color: var(--fg);
-    font: 16px/1.6 var(--font-body);
-    text-rendering: optimizeLegibility;
-  }
-  :global(body::before) {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    background:
-      radial-gradient(ellipse at 14% 8%, color-mix(in oklch, var(--brand) 9%, transparent), transparent 32rem),
-      linear-gradient(180deg, var(--wash) 0%, var(--bg) 38rem);
-  }
-  :global(img) { display: block; max-width: 100%; }
-  a { color: inherit; text-decoration: none; }
-  button, input, select, textarea { font: inherit; }
-  figure { margin: 0; }
-  .page { overflow: hidden; padding-top: 78px; }
-  .shell { width: min(1200px, calc(100% - 48px)); margin: 0 auto; }
-
-  .nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 20;
-    border-bottom: 1px solid color-mix(in oklch, var(--border) 70%, transparent);
-    background: color-mix(in oklch, white 88%, transparent);
-    backdrop-filter: blur(20px);
-    transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-  }
-  .nav.is-at-top {
-    border-bottom-color: color-mix(in oklch, var(--border) 45%, transparent);
-    background: color-mix(in oklch, white 82%, transparent);
-    box-shadow: none;
-  }
-  .nav.is-scrolled {
-    border-bottom-color: color-mix(in oklch, var(--border) 86%, transparent);
-    background: color-mix(in oklch, white 94%, transparent);
-    box-shadow: 0 12px 34px color-mix(in oklch, var(--navy-deep) 9%, transparent);
-  }
-  .nav-inner {
-    height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 30px;
-    transition: height 180ms ease;
-  }
-  .nav .logo { width: 152px; height: auto; transition: width 180ms ease; }
-  .nav.is-scrolled .nav-inner { height: 62px; }
-  .nav.is-scrolled .logo { width: 126px; }
-  .links { display: flex; gap: 32px; align-items: center; color: var(--muted); font-size: 13.5px; font-weight: 700; }
-  .links a { transition: color 160ms; }
-  .links a:hover { color: var(--fg); }
-  .actions { display: flex; gap: 10px; align-items: center; }
-  .btn {
-    min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
-    border: 1px solid var(--border); border-radius: 999px; padding: 0 22px;
-    background: white; color: var(--fg); font-size: 13.5px; font-weight: 800;
-    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, min-height 180ms ease, padding 180ms ease;
-  }
-  .nav.is-scrolled .btn { min-height: 38px; padding: 0 18px; }
-  .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px color-mix(in oklch, var(--brand) 14%, transparent); border-color: color-mix(in oklch, var(--brand) 44%, var(--border)); }
-  .btn.primary { border-color: var(--navy); background: var(--navy); color: white; }
-  .btn.primary:hover { box-shadow: 0 6px 22px color-mix(in oklch, var(--navy-deep) 28%, transparent); }
-
-  .eyebrow {
-    display: inline-flex; align-items: center; gap: 11px;
-    margin: 0 0 20px; color: var(--navy);
-    font: 850 12px/1 var(--font-body); letter-spacing: 0.06em; text-transform: uppercase;
-  }
-  .eyebrow::before { content: ""; width: 26px; height: 2.5px; border-radius: 999px; background: var(--brand); flex: 0 0 auto; }
-  h1, h2, h3, h4, p { margin-top: 0; }
-
-  .hero { padding: 0; min-height: calc(100svh - 78px); }
-  .hero-layout {
-    width: 100%; max-width: none; margin: 0;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 0; align-items: stretch; min-height: calc(100svh - 78px);
-  }
-  .hero-copy-panel {
-    display: flex; flex-direction: column; justify-content: center;
-    padding: clamp(60px, 8vw, 108px) 72px clamp(60px, 8vw, 108px) calc((100vw - min(1200px, calc(100vw - 48px))) / 2 + 24px);
-  }
-  h1 { max-width: 640px; margin-bottom: 26px; font: 760 clamp(46px, 5vw, 66px)/0.94 var(--font-display); letter-spacing: -0.038em; text-wrap: balance; }
-  .accent-word { color: var(--accent); }
-  .lead { max-width: 580px; margin-bottom: 32px; color: var(--muted); font-size: 17px; line-height: 1.62; text-wrap: pretty; }
-  .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 0; }
-  .hero-note { max-width: 480px; padding-left: 18px; border-left: 2.5px solid var(--brand); color: color-mix(in oklch, var(--fg) 72%, var(--muted)); font-size: 14px; line-height: 1.6; }
-  .hero-note strong { display: block; margin-bottom: 5px; color: var(--fg); font-size: 13px; }
-  .hero-media { position: relative; min-height: calc(100svh - 78px); }
-  .hero-photo { position: absolute; inset: 0; border-radius: 0 0 0 96px; overflow: hidden; box-shadow: -30px 36px 100px color-mix(in oklch, var(--navy-deep) 16%, transparent); background: var(--navy); }
-  .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, color-mix(in oklch, var(--navy-deep) 16%, transparent) 0%, transparent 38%), linear-gradient(180deg, transparent 50%, color-mix(in oklch, var(--navy-deep) 60%, transparent)); pointer-events: none; }
-  .hero-photo video, .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 45%; }
-  .floating-panel { position: absolute; left: 32px; bottom: 32px; width: min(400px, calc(100% - 64px)); padding: 22px 26px; border: 1px solid color-mix(in oklch, white 20%, transparent); border-radius: 22px; background: color-mix(in oklch, var(--navy-deep) 78%, transparent); color: white; backdrop-filter: blur(18px); }
-  .floating-panel span { color: color-mix(in oklch, white 68%, var(--brand)); font: 850 11px/1 var(--font-body); letter-spacing: 0.07em; text-transform: uppercase; }
-  .floating-panel p { margin: 11px 0 0; font: 680 26px/1.14 var(--font-display); letter-spacing: -0.02em; }
-
-  .trust-strip { position: relative; background: var(--navy-deep); overflow: hidden; }
-  .trust-strip::before, .trust-strip::after {
-    content: ""; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none;
-  }
-  .trust-strip::before { left: 0; background: linear-gradient(90deg, var(--navy-deep), transparent); }
-  .trust-strip::after { right: 0; background: linear-gradient(270deg, var(--navy-deep), transparent); }
-  .trust-label-badge {
-    position: absolute; left: 24px; top: 50%; transform: translateY(-50%); z-index: 3;
-    display: flex; align-items: center; gap: 8px; padding: 6px 14px 6px 10px;
-    border-radius: 999px; background: oklch(11% 0.044 258);
-    border: 1px solid color-mix(in oklch, var(--brand) 38%, var(--navy-deep));
-    box-shadow: 0 0 0 8px var(--navy-deep), 16px 0 24px var(--navy-deep);
-    color: color-mix(in oklch, white 84%, var(--brand));
-    font: 850 11px/1 var(--font-body); letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;
-  }
-  .trust-label-badge::before {
-    content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--brand); flex: 0 0 auto;
-    box-shadow: 0 0 0 3px color-mix(in oklch, var(--brand) 30%, transparent);
-  }
-  .trust-track { display: flex; align-items: center; min-height: 58px; overflow: hidden; padding-left: 180px; }
-  .trust-list { display: flex; align-items: center; gap: 0; width: max-content; animation: marquee 38s linear infinite; }
-  .trust-strip:hover .trust-list { animation-play-state: paused; }
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  .trust-item {
-    padding: 0 28px;
-    color: color-mix(in oklch, white 70%, oklch(80% 0.025 240));
-    font-size: 13px; font-weight: 700; white-space: nowrap; letter-spacing: 0.01em;
-  }
-  .trust-sep { flex: 0 0 auto; width: 4px; height: 4px; border-radius: 50%; background: color-mix(in oklch, var(--brand) 60%, transparent); }
-
-  .conditions { padding: 108px 0 100px; background: white; border-bottom: 1px solid var(--border); }
-  .conditions-layout { display: grid; grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr); gap: 80px; align-items: center; }
-  .portrait-stack { position: relative; min-height: 540px; }
-  .image-a, .image-b { position: absolute; overflow: hidden; background: var(--wash); box-shadow: 0 28px 70px color-mix(in oklch, var(--navy-deep) 10%, transparent); }
-  .image-a { inset: 0 96px 96px 0; border-radius: 140px 28px 28px 28px; }
-  .image-b { right: 0; bottom: 0; width: 48%; aspect-ratio: 0.84; border: 10px solid white; border-radius: 28px 28px 90px 28px; }
-  .image-a img, .image-b img { width: 100%; height: 100%; object-fit: cover; }
-  .conditions h2, .services-head h2, .referral-copy h2, .team-head h2, .appointment h2 { font: 760 clamp(38px, 5vw, 68px)/0.95 var(--font-display); letter-spacing: -0.038em; text-wrap: balance; }
-  .conditions h2 { margin-bottom: 20px; font-size: clamp(36px, 4vw, 48px); }
-  .section-copy { color: var(--muted); font-size: 17px; line-height: 1.65; text-wrap: pretty; margin-bottom: 30px; }
-  .cond-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin-top: 28px; }
-  .cond-item { display: flex; align-items: center; gap: 11px; padding: 13px 16px; border: 1px solid var(--border); border-radius: 14px; background: var(--wash); font-size: 14px; font-weight: 750; color: var(--fg); line-height: 1.25; }
-  .cond-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--brand); flex: 0 0 auto; opacity: 0.75; }
-
-  .services { padding: 108px 0 100px; background: var(--wash); }
-  .services-head { max-width: 900px; margin: 0 auto 58px; text-align: center; }
-  .services-head .eyebrow, .locations-top .eyebrow { justify-content: center; }
-  .services-head h2 { margin-bottom: 20px; }
-  .services-head p { color: var(--muted); font-size: 17px; max-width: 680px; margin: 0 auto; }
-  .service-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-bottom: 18px; }
-  .service-card { background: white; border: 1px solid var(--border); border-radius: 26px; overflow: hidden; display: flex; flex-direction: column; transition: transform 220ms ease, box-shadow 220ms ease; }
-  .service-card:hover { transform: translateY(-4px); box-shadow: 0 22px 56px color-mix(in oklch, var(--navy-deep) 8%, transparent); }
-  .sc-image { width: 100%; aspect-ratio: 16 / 10; overflow: hidden; }
-  .sc-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 500ms ease; }
-  .service-card:hover .sc-image img { transform: scale(1.04); }
-  .sc-body { padding: 28px; flex: 1; display: flex; flex-direction: column; }
-  .sc-tag { display: inline-flex; align-items: center; width: max-content; margin-bottom: 14px; padding: 6px 12px; border-radius: 999px; background: color-mix(in oklch, var(--brand) 10%, white); color: var(--navy); border: 1px solid color-mix(in oklch, var(--brand) 28%, var(--border)); font: 850 11px/1 var(--font-body); letter-spacing: 0.1em; text-transform: uppercase; }
-  .sc-body h3 { margin: 0 0 10px; font: 720 24px/1.08 var(--font-display); letter-spacing: -0.02em; color: var(--fg); }
-  .sc-body p { margin: 0; color: var(--muted); font-size: 14.5px; line-height: 1.6; }
-  .service-extras { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-  .service-extra { border-radius: 26px; }
-  .service-extra h4 { margin: 0 0 8px; font-size: 17px; font-weight: 800; letter-spacing: -0.01em; }
-  .service-extra p { margin: 0; color: var(--muted); font-size: 14px; }
-
-  .referral { padding: 116px 0; background: white; border-top: 1px solid var(--border); }
-  .referral-wrap { display: grid; grid-template-columns: minmax(400px, 0.88fr) minmax(0, 1fr); gap: 80px; align-items: center; }
-  .referral-copy h2 { margin-bottom: 20px; }
-  .care-path { margin-top: 36px; border-top: 1px solid color-mix(in oklch, var(--brand) 20%, var(--border)); }
-  .path-point { display: grid; grid-template-columns: 30px 1fr; gap: 0 18px; padding: 22px 0; border-bottom: 1px solid color-mix(in oklch, var(--brand) 14%, var(--border)); }
-  .path-point:last-child { border-bottom: none; padding-bottom: 0; }
-  .path-point::before { content: ""; grid-row: span 3; align-self: start; margin-top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 7px color-mix(in oklch, var(--brand) 12%, white); }
-  .path-point span { display: block; margin-bottom: 6px; color: var(--brand); font-size: 11px; font-weight: 900; letter-spacing: 0.07em; text-transform: uppercase; }
-  .path-point strong { display: block; margin-bottom: 5px; font: 720 22px/1.05 var(--font-display); letter-spacing: -0.02em; }
-  .path-point p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
-  .quote-card { position: relative; min-height: 580px; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(36px, 5vw, 66px); border-radius: 48px 48px 48px 150px; overflow: hidden; color: white; box-shadow: 0 36px 96px color-mix(in oklch, var(--navy-deep) 16%, transparent); }
-  .quote-card-bg { position: absolute; inset: 0; z-index: 0; }
-  .quote-card-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 38%; }
-  .quote-card-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(175deg, color-mix(in oklch, var(--navy-deep) 14%, transparent) 0%, color-mix(in oklch, var(--navy-deep) 80%, transparent) 100%); }
-  .quote-card::before { content: ""; position: absolute; inset: 18px; border: 1px solid color-mix(in oklch, white 20%, transparent); border-radius: 36px 36px 36px 130px; z-index: 2; pointer-events: none; }
-  .quote-card::after { content: "\201C"; position: absolute; right: clamp(28px, 4vw, 54px); top: clamp(18px, 4vw, 38px); color: color-mix(in oklch, white 18%, transparent); font: 760 clamp(130px, 16vw, 220px)/0.75 var(--font-display); letter-spacing: -0.08em; z-index: 2; }
-  .quote-kicker { position: relative; z-index: 3; width: max-content; margin-bottom: 18px; padding: 8px 13px; border-radius: 999px; background: color-mix(in oklch, white 14%, transparent); color: color-mix(in oklch, white 84%, var(--brand)); font-size: 11px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; backdrop-filter: blur(10px); }
-  .quote-card blockquote { position: relative; z-index: 3; margin: 0 0 20px; font: 720 clamp(30px, 4.2vw, 58px)/0.98 var(--font-display); letter-spacing: -0.032em; text-wrap: balance; }
-  .quote-card cite { position: relative; z-index: 3; color: oklch(84% 0.03 232); font-style: normal; font-weight: 750; font-size: 14px; }
-
-  .locations { padding: 116px 0 108px; background: var(--wash); border-top: 1px solid var(--border); }
-  .locations-top { max-width: 960px; margin: 0 auto 60px; text-align: center; }
-  .locations-top h2 { font: 760 clamp(40px, 5vw, 58px)/0.94 var(--font-display); letter-spacing: -0.038em; margin-bottom: 22px; }
-  .locations-top p { color: var(--muted); font-size: 17px; max-width: 680px; margin: 0 auto; }
-  .location-river { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr); gap: 18px; align-items: stretch; }
-  .clinic-feature { min-height: 660px; height: 100%; border-radius: 38px; overflow: hidden; position: relative; color: white; box-shadow: 0 32px 74px color-mix(in oklch, var(--navy-deep) 12%, transparent); background: var(--navy); }
-  .clinic-feature img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; transition: opacity 200ms ease, transform 540ms ease; }
-  .clinic-feature.is-changing img { opacity: 0; transform: scale(1.018); }
-  .clinic-feature::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, color-mix(in oklch, var(--navy-deep) 72%, transparent)); }
-  .clinic-caption { position: absolute; z-index: 1; left: 32px; right: 32px; bottom: 30px; }
-  .clinic-caption h3 { margin-bottom: 8px; font: 720 40px/1 var(--font-display); }
-  .clinic-caption p { margin: 0; color: oklch(87% 0.02 235); font-size: 15px; }
-  .location-list { display: grid; grid-template-rows: repeat(6, minmax(0, 1fr)); gap: 12px; height: 100%; min-height: 660px; }
-  .location-item { width: 100%; min-height: 0; appearance: none; text-align: left; display: flex; flex-direction: column; justify-content: center; padding: 18px 22px; border-radius: 22px; background: color-mix(in oklch, white 88%, transparent); border: 1px solid var(--border); color: var(--fg); cursor: pointer; position: relative; transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease; }
-  .location-item::after { content: "View clinic"; position: absolute; right: 18px; top: 50%; transform: translateY(-50%) translateX(4px); color: var(--brand); font-size: 11px; font-weight: 900; letter-spacing: 0.08em; opacity: 0; text-transform: uppercase; transition: opacity 180ms ease, transform 180ms ease; }
-  .location-item:hover, .location-item:focus-visible { transform: translateY(-2px); border-color: color-mix(in oklch, var(--brand) 48%, var(--border)); background: white; box-shadow: 0 16px 40px color-mix(in oklch, var(--navy-deep) 7%, transparent); outline: none; }
-  .location-item:hover::after, .location-item:focus-visible::after { opacity: 1; transform: translateY(-50%); }
-  .location-name { display: block; margin: 0 0 4px; font-size: 17px; font-weight: 800; }
-  .location-detail { display: block; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.4; }
-  .location-item.is-active { background: var(--navy); color: white; border-color: var(--navy); box-shadow: 0 16px 42px color-mix(in oklch, var(--navy-deep) 18%, transparent); }
-  .location-item.is-active .location-detail { color: oklch(78% 0.025 240); }
-  .location-item.is-active::after { color: color-mix(in oklch, white 72%, var(--brand)); content: "Selected"; opacity: 1; transform: translateY(-50%); }
-
-  .team { padding: 108px 0 112px; background: white; border-top: 1px solid var(--border); }
-  .team-head { display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(300px, 0.6fr); gap: 48px; align-items: end; margin-bottom: 44px; }
-  .team-head h2 { margin-bottom: 0; }
-  .team-copy { margin-bottom: 0; }
-  .team-scroll { display: grid; grid-template-columns: repeat(8, minmax(178px, 1fr)); gap: 14px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: thin; }
-  .person { min-width: 178px; border-radius: 24px; overflow: hidden; background: var(--wash); border: 1px solid var(--border); }
-  .person img { width: 100%; aspect-ratio: 0.82; object-fit: cover; object-position: center top; }
-  .person div { padding: 14px 16px; }
-  .person h3 { margin: 0 0 3px; font-size: 15px; font-weight: 800; }
-  .person p { margin: 0; color: var(--muted); font-size: 12px; }
-
-  .appointment { padding: 108px 0; background: var(--navy-deep); color: white; }
-  .appointment .eyebrow { color: white; }
-  .appointment .eyebrow::before { background: var(--brand); }
-  .appointment-layout { display: grid; grid-template-columns: minmax(0, 0.76fr) minmax(420px, 0.88fr); gap: 72px; align-items: center; }
-  .appointment h2 { color: white; margin-bottom: 22px; }
-  .appointment .section-copy { color: oklch(78% 0.024 240); margin-bottom: 0; }
-  .appt-promises { margin-top: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .appt-promise { padding: 18px 20px; border-left: 2.5px solid var(--brand); background: color-mix(in oklch, white 6%, transparent); border-radius: 0 18px 18px 0; color: oklch(82% 0.022 240); font-size: 13.5px; line-height: 1.5; }
-  .appt-promise strong { display: block; color: white; margin-bottom: 5px; }
-  .form-card { padding: 30px; border-radius: 34px; background: white; color: var(--fg); box-shadow: 0 32px 88px color-mix(in oklch, black 22%, transparent); }
-  .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-  label { display: block; margin-bottom: 7px; font-size: 12px; font-weight: 900; letter-spacing: 0.02em; color: var(--fg); }
-  input, select, textarea { width: 100%; min-height: 44px; border: 1px solid var(--border); border-radius: 13px; background: var(--bg); padding: 10px 13px; color: var(--fg); outline: none; transition: border-color 160ms; }
-  input:focus, select:focus, textarea:focus { border-color: var(--brand); }
-  textarea { min-height: 106px; resize: vertical; }
-  .wide { grid-column: 1 / -1; }
-  .form-card .btn { width: 100%; margin-top: 16px; font-size: 14px; }
-
-  .footer { background: oklch(12% 0.048 258); color: white; padding: 58px 0 38px; }
-  .footer-grid { display: grid; grid-template-columns: 1.2fr repeat(3, minmax(140px, 0.4fr)); gap: 36px; align-items: start; }
-  .footer .logo { width: 136px; margin-bottom: 18px; }
-  .footer p, .footer a { color: oklch(73% 0.026 240); font-size: 13px; line-height: 1.65; }
-  .footer h3 { color: white; font-size: 12px; letter-spacing: 0.11em; text-transform: uppercase; margin-bottom: 12px; }
-  .footer-base { margin-top: 48px; padding-top: 24px; border-top: 1px solid color-mix(in oklch, white 7%, transparent); display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-  .footer-base span { color: oklch(50% 0.02 240); font-size: 12px; }
-
-  @media (max-width: 1000px) {
-    .links { display: none; }
-    .hero-layout, .conditions-layout, .referral-wrap, .location-river, .team-head, .appointment-layout { grid-template-columns: 1fr; }
-    .hero-layout { width: min(1200px, calc(100% - 48px)); margin: 0 auto; }
-    .hero, .hero-layout { min-height: auto; }
-    .hero-copy-panel { padding: 60px 0 28px; }
-    .hero-media { min-height: 600px; }
-    .hero-photo { border-radius: 36px 36px 36px 90px; }
-    .portrait-stack { min-height: 400px; }
-    .image-a { inset: 0 80px 80px 0; }
-    .service-cards, .service-extras { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-  }
-
-  @media (max-width: 680px) {
-    .shell { width: min(100% - 30px, 1200px); }
-    .page { padding-top: 72px; }
-    .nav-inner { height: 72px; }
-    .actions .btn:not(.primary) { display: none; }
-    .nav .logo { width: 128px; }
-    .nav.is-scrolled .logo { width: 112px; }
-    h1 { font-size: clamp(44px, 14.5vw, 66px); }
-    .hero-copy-panel { padding-top: 38px; }
-    .hero-media { min-height: 500px; }
-    .hero-photo { inset: 0; border-radius: 28px 28px 28px 72px; }
-    .floating-panel { left: 16px; bottom: 16px; width: calc(100% - 32px); padding: 20px 22px; }
-    .floating-panel p { font-size: 23px; }
-    .trust-label-badge { left: 15px; }
-    .trust-track { padding-left: 165px; }
-    .conditions, .services, .referral, .locations, .team, .appointment { padding: 72px 0; }
-    .portrait-stack { min-height: 360px; }
-    .image-a { inset: 0 48px 76px 0; }
-    .image-b { width: 52%; }
-    .cond-grid, .service-cards, .service-extras, .appt-promises, .form-grid, .footer-grid { grid-template-columns: 1fr; }
-    .clinic-feature { min-height: 440px; }
-    .location-list { grid-template-rows: none; height: auto; min-height: 0; }
-    .quote-card { min-height: 440px; border-radius: 36px; padding: 30px; }
-    .quote-card::before { border-radius: 26px; }
-    .footer-base { flex-direction: column; align-items: flex-start; gap: 8px; }
-  }
-</style>

@@ -56,8 +56,8 @@ export default {
         card: "0 20px 45px -28px hsl(214 38% 18% / 0.18), 0 8px 16px -12px hsl(214 38% 18% / 0.22)",
       },
       fontFamily: {
-        sans: ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
-        display: ["Newsreader", "ui-serif", "Georgia", "serif"],
+        sans: ["DM Sans", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["Playfair Display", "ui-serif", "Georgia", "serif"],
       },
       backgroundImage: {
         "grid-fade":
@@ -65,6 +65,20 @@ export default {
       },
       backgroundSize: {
         grid: "auto, 28px 28px, 28px 28px",
+      },
+      keyframes: {
+        "animated-text": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+      },
+      animation: {
+        "animated-text": "animated-text 10s ease-in-out infinite",
+        marquee: "marquee 38s linear infinite",
       },
     },
   },
