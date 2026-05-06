@@ -1,29 +1,33 @@
 ---
-import { existsSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 import { Image } from "astro:assets";
 import {
+  Activity,
   ArrowRight,
-  Building2,
+  Bone,
   CalendarDays,
-  CircleCheckBig,
-  Clock3,
-  Mail,
-  MapPin,
+  Dumbbell,
+  Footprints,
+  Hospital,
   Phone,
   Quote,
+  RefreshCw,
+  Scale,
   ShieldCheck,
-  Star,
-  Users,
+  Stethoscope,
 } from "@lucide/astro";
+
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import logoWhite from "../assets/brand/logo-white.svg";
-import franklintonClinic from "../assets/clinics/franklinton.jpg";
-import hattiesburgClinic from "../assets/clinics/hattiesburg.jpg";
-import ponchatoulaClinic from "../assets/clinics/ponchatoula.jpg";
+
+import covingtonClinic from "../assets/clinics/cov3.jpg";
+import boglusaClinic from "../assets/clinics/cov4.jpg";
+import sumrallClinic from "../assets/clinics/cov5.jpg";
+import franklintonClinic from "../assets/clinics/cov.jpg";
+import hattiesburgClinic from "../assets/clinics/cov1.jpg";
+import ponchatoulaClinic from "../assets/clinics/cov2.jpg";
+
 import manualTherapyImage from "../assets/editorial/manual-therapy.jpeg";
-import rehabSessionImage from "../assets/editorial/rehab-session.jpeg";
 import treatmentRoomImage from "../assets/editorial/treatment-room.jpeg";
 import billyCochranImage from "../assets/team/billy-cochran.png";
 import brianCochranImage from "../assets/team/brian-cochran.jpg";
@@ -33,9 +37,7 @@ import jonathanMitchellImage from "../assets/team/jonathan-mitchell.jpg";
 import kelvinMccainImage from "../assets/team/kelvin-mccain.jpg";
 import ryanTateImage from "../assets/team/ryan-tate.jpg";
 import stephanieElkinsImage from "../assets/team/stephanie-elkins.jpg";
-
-const heroVideo = "/assets/video/physical-therapy-action.mp4";
-const hasHeroVideo = existsSync(fileURLToPath(new URL("../../public/assets/video/physical-therapy-action.mp4", import.meta.url)));
+import teamHeroImage from "../assets/team/team.jpg";
 
 const insuranceCarriers = [
   "Medicare",
@@ -55,10 +57,32 @@ const conditions = [
   "Neck pain",
   "Shoulder injuries",
   "Post-surgical rehab",
-  "Balance & dizziness",
   "Chronic pain",
-  "Foot & ankle diagnoses",
   "Muscle strains & sprains",
+];
+
+const conditions2 = [
+  { icon: Bone, name: "Back & Hip Pain", copy: "Lower back pain, sciatica, disc problems, and hip mobility issues." },
+  { icon: Activity, name: "Knee Injuries", copy: "ACL tears, meniscus issues, knee replacement recovery, and runner's knee." },
+  { icon: Dumbbell, name: "Shoulder & Arm", copy: "Rotator cuff injuries, elbow pain, wrist conditions, and frozen shoulder." },
+  { icon: Footprints, name: "Foot & Ankle", copy: "Plantar fasciitis, Achilles problems, ankle sprains, and instability." },
+  { icon: Stethoscope, name: "Neck & Nerve Pain", copy: "Pinched nerves, headaches, whiplash recovery, and cervical pain." },
+  { icon: Scale, name: "Balance Disorders", copy: "Fall prevention, vestibular rehab, coordination, and stability." },
+  { icon: Hospital, name: "Post-Surgical Recovery", copy: "Hip, knee, spine, and rotator cuff recovery with clear progression." },
+  { icon: RefreshCw, name: "Chronic Pain", copy: "Persistent pain, arthritis, fibromyalgia, and long-term injury management." },
+];
+
+const steps = [
+  ["1", "Request Your Appointment", "Call us or submit a request online. Our team will help you schedule at the clinic that fits your week."],
+  ["2", "Your Whole-Body Evaluation", "Your therapist takes the time to understand what hurts, why it may be happening, and what life needs to look like again."],
+  ["3", "Your Personalized Plan", "Every session is hands-on, purposeful, and built around your body, your goals, and your progress."],
+  ["4", "Get Back to Living", "We measure progress, celebrate milestones, and help you return to the routines and people you love."],
+];
+
+const reviews = [
+  ["M", "Margaret T.", "Covington, LA · Post-Surgical Recovery", "I came in after my knee replacement not knowing what to expect. My therapist was with me every step of the way. Eight weeks later I was back in my garden."],
+  ["D", "David K.", "Hattiesburg, MS · Shoulder Injury Recovery", "I'd tried PT before and it did nothing. CarePT was completely different. They listened, found the real problem, and got me back to the gym."],
+  ["S", "Sandra W.", "Bogalusa, LA · Chronic Back Pain", "My back pain had been chronic for three years. Six weeks in, I slept through the night for the first time in years."],
 ];
 
 const clinics = [
@@ -75,7 +99,7 @@ const clinics = [
     title: "Covington, LA",
     detail: "129 Corporate Dr. · (985) 249-6111",
     copy: "129 Corporate Dr. · (985) 249-6111",
-    image: treatmentRoomImage,
+    image: covingtonClinic,
     alt: "CarePT treatment room",
     phone: "(985) 249-6111",
     address: "129 Corporate Dr.",
@@ -84,7 +108,7 @@ const clinics = [
     title: "Bogalusa, LA",
     detail: "1202 Sunset Dr. · (985) 735-1426",
     copy: "1202 Sunset Dr. · (985) 735-1426",
-    image: manualTherapyImage,
+    image: boglusaClinic,
     alt: "CarePT hands-on therapy",
     phone: "(985) 735-1426",
     address: "1202 Sunset Dr.",
@@ -111,7 +135,7 @@ const clinics = [
     title: "Sumrall, MS",
     detail: "4877 Mississippi 589 · (601) 758-3333",
     copy: "4877 Mississippi 589 · (601) 758-3333",
-    image: rehabSessionImage,
+    image: sumrallClinic,
     alt: "CarePT rehab session",
     phone: "(601) 758-3333",
     address: "4877 Mississippi 589",
@@ -129,72 +153,29 @@ const team = [
   { name: "Stephanie Elkins", role: "DPT — Sumrall", image: stephanieElkinsImage },
 ];
 
-const serviceCards = [
-  {
-    image: manualTherapyImage,
-    alt: "Manual therapy session",
-    tag: "Hands-on care",
-    title: "Manual Therapy",
-    copy: "Skilled joint mobilization and soft-tissue techniques that restore movement and reduce pain at the source.",
-  },
-  {
-    image: rehabSessionImage,
-    alt: "Rehabilitation session",
-    tag: "Guided exercise",
-    title: "Therapeutic Rehabilitation",
-    copy: "Individual progressions for strength, mobility, and control from first session to confident independence.",
-  },
-  {
-    image: treatmentRoomImage,
-    alt: "CarePT treatment room",
-    tag: "Specialized programs",
-    title: "Aquatic & Specialized Care",
-    copy: "Aquatic therapy, dry needling, gait retraining, and balance programs tailored to your clinical picture.",
-  },
-  {
-    image: manualTherapyImage,
-    alt: "Aquatic therapy session",
-    tag: "Low impact",
-    title: "Aquatic Therapy",
-    copy: "Low-impact movement that rebuilds joint tolerance without aggravating pain.",
-  },
-  {
-    image: rehabSessionImage,
-    alt: "Gait and balance training",
-    tag: "Steady movement",
-    title: "Gait & Balance Training",
-    copy: "Practical retraining for steadier walking, fall prevention, and everyday independence.",
-  },
-  {
-    image: treatmentRoomImage,
-    alt: "Trigger point dry needling treatment room",
-    tag: "Targeted care",
-    title: "Trigger Point Dry Needling",
-    copy: "Targeted treatment for muscle tension and referred pain when clinically appropriate.",
-  },
-];
 ---
 
 <BaseLayout
   title="CarePT Physical Therapy"
   description="CarePT helps patients move through pain, surgery, injury, and uncertainty with hands-on treatment, clear plans, and attentive care."
 >
-  <div class="overflow-hidden bg-white pt-[78px] text-slate-900">
+  <div class="index-page overflow-hidden bg-white pt-[78px] text-slate-900">
     <SiteHeader />
 
     <main>
       <section class="grid min-h-[calc(100svh-78px)] overflow-hidden bg-gradient-to-b from-skybrand-200 via-skybrand-50 to-white lg:grid-cols-2">
         <div class="flex flex-col justify-center px-6 py-20 sm:px-10 lg:px-[calc((100vw-min(1280px,100vw-48px))/2+24px)] lg:pr-16">
-          <p class="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-700 before:block before:h-0.5 before:w-7 before:rounded-full before:bg-skybrand-600">
-            Care Physical Therapy
-          </p>
-          <h1 class="max-w-2xl font-display text-[clamp(46px,5vw,66px)] font-black leading-[0.94] tracking-[-0.038em] text-slate-950">
-            Get Your <span class="animate-animated-text bg-[linear-gradient(-45deg,#80be41,#3da8cf,#1B4F8A,#3da8cf)] bg-[length:300%] bg-clip-text text-transparent">Life</span> Back<br />
-            Expert Care, Close to Home
+          <div class="mb-8 inline-flex w-fit items-center gap-3 rounded-full border border-slate-700/30 bg-white/70 px-4 py-2">
+            <ShieldCheck class="h-4 w-4" />
+            <span class="text-xs font-bold uppercase tracking-[0.1em] text-slate-700">Doctor-trusted · Insurance accepted</span>
+          </div>
+          <h1 class="max-w-2xl font-display text-[clamp(46px,5vw,125px)] font-black leading-[0.94] tracking-[-0.038em] text-slate-950">
+            Heal<span class="text-skybrand-600">.</span><br>
+            Strengthen<span class="text-skybrand-600">.</span><br>
+            <span class="animate-animated-text bg-[linear-gradient(-45deg,#3da8cf,#1B4F8A,#3da8cf)] bg-[length:300%] bg-clip-text text-transparent">Thrive</span><span class="text-skybrand-600">.</span>
           </h1>
-          <p class="mt-7 max-w-xl text-[17px] leading-8 text-slate-700">
-            CarePT helps patients move through pain, surgery, injury, and uncertainty with hands-on treatment, clear plans,
-            and the kind of attention that makes recovery feel possible again.
+          <p class="mt-7 max-w-xl text-[17px] text-slate-700">
+            Individualized, hands-on care at 6 convenient locations across Louisiana and Mississippi. When you're here, you're family.
           </p>
           <div class="mt-8 flex flex-wrap gap-3">
             <a href="#appointment" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-skybrand-800 px-6 text-sm font-extrabold text-white shadow-card transition hover:-translate-y-0.5 hover:bg-skybrand-900">
@@ -207,19 +188,9 @@ const serviceCards = [
           </div>
         </div>
 
-        <div class="relative min-h-[520px] overflow-hidden bg-slate-900 lg:min-h-[calc(100svh-78px)]">
-          {hasHeroVideo ? (
-            <video autoplay muted loop playsinline preload="metadata" poster={rehabSessionImage.src} aria-label="Physical therapy session in progress" class="absolute inset-0 h-full w-full object-cover">
-              <source src={heroVideo} type="video/mp4" />
-            </video>
-          ) : (
-            <Image src={rehabSessionImage} alt="CarePT therapist assisting a patient" class="absolute inset-0 h-full w-full object-cover" />
-          )}
+        <div class="relative min-h-[520px] overflow-hidden rounded-bl-[72px] bg-slate-900 lg:min-h-[calc(100svh-78px)] lg:rounded-bl-[120px]">
+          <Image src={teamHeroImage} alt="CarePT team members" class="absolute inset-0 h-full w-full object-cover" />
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/10 to-transparent"></div>
-          <aside class="absolute bottom-6 left-6 right-6 rounded-2xl border border-white/15 bg-slate-950/75 p-6 text-white shadow-elevated backdrop-blur md:left-8 md:right-auto md:max-w-sm">
-            <span class="text-[11px] font-black uppercase tracking-[0.12em] text-skybrand-200">Our Mission</span>
-            <p class="mt-2 font-display text-2xl font-bold leading-tight">Inspired to heal. Empowered to live.</p>
-          </aside>
         </div>
       </section>
 
@@ -254,13 +225,15 @@ const serviceCards = [
             <p class="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-700 before:block before:h-0.5 before:w-7 before:rounded-full before:bg-skybrand-600">
               First-time patients
             </p>
-            <h2 class="max-w-xl font-display text-[clamp(36px,4vw,48px)] font-bold leading-[0.98] tracking-[-0.035em] text-slate-950">
-              If physical therapy failed you before, this should feel different.
+            <h2 class="max-w-xl font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-slate-950">
+              More Than a Clinic.<br>
+              We're <span class="animate-animated-text bg-[linear-gradient(-45deg,#3da8cf,#1B4F8A,#3da8cf)] bg-[length:300%] bg-clip-text text-transparent">Your</span> Team.
             </h2>
-            <p class="mt-5 max-w-xl text-[17px] leading-8 text-slate-600">
-              Rushed appointments and generic exercise sheets are not enough when pain is changing the way you work,
-              sleep, walk, or care for your family. CarePT begins with a comprehensive evaluation, then builds a plan
-              around the way your body moves and the outcome you need back.
+            <p class="mt-5 max-w-xl text-[17px] text-slate-600">
+              At Care Physical Therapy, pain is never just physical. It touches how you sleep, how you move, and how you show up for the people who matter most.
+            </p>
+            <p class="mt-5 max-w-xl text-[17px] text-slate-600">
+              That's why we do not just treat the injury. We evaluate your whole body, understand your whole life, and build a recovery plan around your specific goals.
             </p>
             <div class="mt-8 grid gap-3 sm:grid-cols-2" aria-label="Common conditions we treat">
               {conditions.map((condition) => (
@@ -274,32 +247,87 @@ const serviceCards = [
         </div>
       </section>
 
-      <section id="services" class="bg-slate-50 px-6 py-24 lg:px-10 xl:px-16">
+      <section id="services" class="relative overflow-hidden bg-[#FAF8F4] px-6 py-24 lg:px-10 xl:px-16">
         <div class="mx-auto max-w-[1280px]">
-          <div class="mx-auto mb-14 max-w-4xl text-center">
-            <p class="mb-4 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-700">Expert services</p>
-            <h2 class="font-display text-[clamp(38px,5vw,68px)] font-bold leading-[0.98] tracking-[-0.035em] text-slate-950">
-              Hands-on expertise. No cookie-cutter care.
+          <div class="relative mx-auto mb-14 max-w-3xl text-center">
+            <p class="mb-4 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-600">What We Treat</p>
+            <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em]">
+              Whatever Is Hold You Back<br>We Can Help.
             </h2>
-            <p class="mx-auto mt-5 max-w-2xl text-[17px] leading-8 text-slate-600">
-              CarePT combines manual therapy, guided strengthening, movement retraining, and practical home programs so
-              patients understand what is happening and what progress should feel like.
-            </p>
+            <p class="mx-auto mt-5 max-w-xl text-base text-slate-600">Our licensed therapists have successfully treated thousands of patients across these conditions and many more.</p>
           </div>
-          <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-            {serviceCards.map((service) => (
-              <article class="overflow-hidden rounded-[26px] border border-slate-200 bg-white shadow-card transition hover:-translate-y-1 hover:shadow-elevated">
-                <div class="aspect-[16/10] overflow-hidden">
-                  <Image src={service.image} alt={service.alt} class="h-full w-full object-cover transition duration-500 hover:scale-105" />
+          <div class="relative grid gap-px overflow-hidden rounded-[28px] border border-slate-200/80 bg-slate-200/80 shadow-[0_24px_70px_-46px_rgba(15,23,42,0.45)] sm:grid-cols-2 lg:grid-cols-4">
+            {conditions2.map((condition) => (
+                <article class="group relative min-h-[220px] overflow-hidden bg-white p-6 text-left transition duration-300 ease-out">
+                  <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-skybrand-800 via-skybrand-500 to-[#80be41] opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                  <div class="relative mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-skybrand-50 to-white text-skybrand-700 ring-1 ring-skybrand-100 transition-colors duration-300 group-hover:text-skybrand-900 group-hover:ring-skybrand-300">
+                    {(() => {
+                      const Icon = condition.icon;
+                      return <Icon class="h-5 w-5" stroke-width={2.2} />;
+                    })()}
+                  </div>
+                  <h3 class="relative text-base font-extrabold text-slate-950">{condition.name}</h3>
+                  <p class="relative mt-3 text-sm text-slate-500">{condition.copy}</p>
+                </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="px-6 py-24 lg:px-10 xl:px-16">
+        <div class="mx-auto max-w-[1280px]">
+        <div class="mx-auto mb-16 max-w-3xl text-center">
+          <p class="mb-4 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-600">Your Recovery Journey</p>
+          <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em]">Feel Like Yourself Again</h2>
+        </div>
+        <div class="recovery-steps relative grid gap-8 lg:grid-cols-4">
+          <div class="recovery-line" aria-hidden="true"></div>
+          {steps.map(([number, title, copy], index) => (
+              <article class="relative z-10 rounded-3xl bg-white p-6 text-center shadow-[0_18px_50px_-40px_rgba(15,23,42,0.55)] ring-1 ring-slate-200/80">
+                <div class:list={["relative z-20 mx-auto mb-6 grid h-16 w-16 place-items-center rounded-full border-[6px] border-white text-xl font-black text-white shadow-[0_12px_28px_-14px_rgba(15,79,138,0.8)]", index % 2 ? "bg-skybrand-500" : "bg-skybrand-800"]}>
+                  {number}
                 </div>
-                <div class="p-7">
-                  <span class="inline-flex rounded-full border border-skybrand-200 bg-skybrand-50 px-3 py-1 text-[11px] font-black uppercase tracking-[0.1em] text-skybrand-800">
-                    {service.tag}
-                  </span>
-                  <h3 class="mt-4 font-display text-2xl font-bold leading-tight text-slate-950">{service.title}</h3>
-                  <p class="mt-3 text-[14.5px] leading-7 text-slate-600">{service.copy}</p>
-                </div>
+                <h3 class="text-base font-extrabold text-slate-950">{title}</h3>
+                <p class="mt-3 text-[13px] leading-6 text-slate-600">{copy}</p>
               </article>
+          ))}
+        </div>
+        </div>
+      </section>
+
+      <section id="stories" class="bg-slate-950 px-6 py-24 text-white lg:px-10 xl:px-16">
+        <div class="mx-auto max-w-[1280px]">
+          <div class="mx-auto mb-14 max-w-3xl text-center">
+            <p class="mb-4 text-xs font-bold uppercase tracking-[0.12em] text-white/50">Patient Stories</p>
+            <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em]">Real People. <span class="text-[#d49a16]">Real Recoveries.</span></h2>
+            <p class="mx-auto mt-5 max-w-xl text-base text-white/60">Hear from patients whose lives changed when they walked through our doors.</p>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-3">
+            {reviews.map(([initial, name, detail, quote]) => (
+                <article class="rounded-2xl border border-white/10 bg-white/5 p-7 transition hover:bg-white/10">
+                  <div class="mb-4 tracking-[0.16em] text-[#d49a16]">★★★★★</div>
+                  <p class="text-[15px] italic leading-7 text-white/85">"{quote}"</p>
+                  <div class="mt-6 flex items-center gap-3">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-skybrand-500 to-skybrand-800 font-display font-bold">{initial}</div>
+                    <div>
+                      <p class="text-sm font-semibold text-white">{name}</p>
+                      <p class="text-xs text-white/45">{detail}</p>
+                    </div>
+                  </div>
+                </article>
+            ))}
+          </div>
+          <div class="mt-12 grid overflow-hidden rounded-2xl bg-white/10 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              ["5★", "Average Google Rating"],
+              ["6+", "Clinic Locations"],
+              ["1K+", "Patients Treated"],
+              ["20+", "Years Serving Communities"],
+            ].map(([number, label]) => (
+                <div class="border-white/10 bg-white/5 p-8 text-center lg:border-l first:border-l-0">
+                  <p class="font-display text-4xl font-black text-white">{number}</p>
+                  <p class="mt-2 text-sm leading-5 text-white/50">{label}</p>
+                </div>
             ))}
           </div>
         </div>
@@ -311,10 +339,10 @@ const serviceCards = [
             <p class="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-700 before:block before:h-0.5 before:w-7 before:rounded-full before:bg-skybrand-600">
               Referral-friendly care
             </p>
-            <h2 class="font-display text-[clamp(38px,5vw,68px)] font-bold leading-[0.98] tracking-[-0.035em] text-slate-950">
+            <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-slate-950">
               Trusted by physicians.
             </h2>
-            <p class="mt-5 max-w-xl text-[17px] leading-8 text-slate-600">
+            <p class="mt-5 max-w-xl text-[17px] text-slate-600">
               A strong referral experience depends on clarity: the patient understands the plan, the therapist tracks
               what is changing, and the physician can trust that care is progressing with purpose.
             </p>
@@ -324,11 +352,13 @@ const serviceCards = [
                 ["Treat", "With intention", "Hands-on care, targeted exercise, and education patients can actually use."],
                 ["Restore", "Daily confidence", "Less pain, steadier movement, and a body patients trust again."],
               ].map(([label, title, copy]) => (
-                <article class="grid grid-cols-[30px_1fr] gap-x-4 py-5">
-                  <span class="mt-1 h-3 w-3 rounded-full bg-skybrand-500 shadow-[0_0_0_7px_rgba(224,242,254,1)]"></span>
+                <article class="py-5">
                   <div>
-                    <span class="text-[11px] font-black uppercase tracking-[0.08em] text-skybrand-600">{label}</span>
-                    <strong class="mt-1 block font-display text-2xl leading-tight text-slate-950">{title}</strong>
+                    <span class="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.08em] text-skybrand-600">
+                      <span class="h-1.5 w-1.5 rounded-full bg-skybrand-500 shadow-[0_0_0_3px_rgba(224,242,254,1)]"></span>
+                      {label}
+                    </span>
+                    <strong class="mt-1 block font-display text-2xl font-extrabold leading-tight text-slate-950">{title}</strong>
                     <p class="mt-2 text-sm leading-6 text-slate-600">{copy}</p>
                   </div>
                 </article>
@@ -336,7 +366,7 @@ const serviceCards = [
             </div>
           </div>
           <aside class="relative flex min-h-[520px] flex-col justify-end overflow-hidden rounded-[48px_48px_48px_150px] p-8 text-white shadow-elevated sm:p-12">
-            <Image src={manualTherapyImage} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover object-center" />
+            <Image src={teamHeroImage} alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-cover object-center" />
             <div class="absolute inset-0 bg-gradient-to-b from-slate-950/20 to-slate-950/85"></div>
             <div class="relative">
               <span class="inline-flex rounded-full bg-white/15 px-3 py-2 text-[11px] font-black uppercase tracking-[0.1em] text-skybrand-100 backdrop-blur">Patient outcome</span>
@@ -354,10 +384,10 @@ const serviceCards = [
         <div class="mx-auto max-w-[1280px]">
           <div class="mx-auto mb-14 max-w-4xl text-center">
             <p class="mb-4 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-700">Six convenient locations</p>
-            <h2 class="font-display text-[clamp(40px,5vw,58px)] font-bold leading-[0.98] tracking-[-0.035em] text-slate-950">
+            <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-slate-950">
               Find the CarePT clinic closest to your recovery.
             </h2>
-            <p class="mx-auto mt-5 max-w-2xl text-[17px] leading-8 text-slate-600">
+            <p class="mx-auto mt-5 max-w-2xl text-[17px] text-slate-600">
               CarePT serves communities across Louisiana and Mississippi with six clinics, clear contact points, and a
               consistent clinical standard from one location to the next.
             </p>
@@ -375,7 +405,7 @@ const serviceCards = [
               {clinics.map((clinic, index) => (
                 <button
                   class:list={[
-                    "location-item group relative flex min-h-[92px] flex-col justify-center rounded-2xl border p-5 text-left transition hover:-translate-y-0.5 hover:border-skybrand-400 hover:bg-white hover:shadow-card focus:outline-none focus:ring-2 focus:ring-skybrand-400",
+                    "location-item group relative flex min-h-[92px] flex-col justify-center rounded-2xl border p-5 text-left transition hover:-translate-y-0.5 hover:border-skybrand-800 hover:bg-skybrand-800 hover:text-white hover:shadow-card focus:outline-none focus:ring-2 focus:ring-skybrand-400",
                     index === 0 ? "is-active border-skybrand-800 bg-skybrand-800 text-white shadow-card" : "border-slate-200 bg-white/80 text-slate-900",
                   ]}
                   type="button"
@@ -386,8 +416,8 @@ const serviceCards = [
                   aria-pressed={index === 0 ? "true" : "false"}
                 >
                   <span class="location-name font-bold">{clinic.title}</span>
-                  <span class:list={["location-detail mt-1 text-sm", index === 0 ? "text-skybrand-100" : "text-slate-500"]}>{clinic.detail}</span>
-                  <span class:list={["location-state absolute right-5 top-1/2 hidden -translate-y-1/2 text-[11px] font-black uppercase tracking-[0.08em] sm:block", index === 0 ? "text-skybrand-100" : "text-skybrand-600 opacity-0 group-hover:opacity-100"]}>
+                  <span class:list={["location-detail mt-1 text-sm group-hover:text-skybrand-100", index === 0 ? "text-skybrand-100" : "text-slate-500"]}>{clinic.detail}</span>
+                  <span class:list={["location-state absolute right-5 top-1/2 hidden -translate-y-1/2 text-[11px] font-black uppercase tracking-[0.08em] group-hover:text-skybrand-100 sm:block", index === 0 ? "text-skybrand-100" : "text-skybrand-600 opacity-0 group-hover:opacity-100"]}>
                     {index === 0 ? "Selected" : "View clinic"}
                   </span>
                 </button>
@@ -404,11 +434,11 @@ const serviceCards = [
               <p class="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-700 before:block before:h-0.5 before:w-7 before:rounded-full before:bg-skybrand-600">
                 Meet the clinicians
               </p>
-              <h2 class="font-display text-[clamp(38px,5vw,68px)] font-bold leading-[0.98] tracking-[-0.035em] text-slate-950">
+              <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-slate-950">
                 Expertise with the warmth that makes recovery feel human.
               </h2>
             </div>
-            <p class="text-[17px] leading-8 text-slate-600">
+            <p class="text-[17px] text-slate-600">
               CarePT's clinicians bring licensed expertise and local trust to the treatment room, translating clinical
               plans into progress patients can feel.
             </p>
@@ -427,16 +457,16 @@ const serviceCards = [
         </div>
       </section>
 
-      <section id="appointment" class="bg-slate-950 px-6 py-24 text-white lg:px-10 xl:px-16">
+      <section id="appointment" class="bg-slate-800 px-6 py-24 text-white lg:px-10 xl:px-16">
         <div class="mx-auto grid max-w-[1280px] items-center gap-12 lg:grid-cols-[0.76fr_0.88fr]">
           <div>
             <p class="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.12em] text-white before:block before:h-0.5 before:w-7 before:rounded-full before:bg-skybrand-400">
               Request an appointment
             </p>
-            <h2 class="font-display text-[clamp(38px,5vw,68px)] font-bold leading-[0.98] tracking-[-0.035em]">
+            <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em]">
               Start with a team that sees the whole picture.
             </h2>
-            <p class="mt-5 max-w-xl text-[17px] leading-8 text-slate-300">
+            <p class="mt-5 max-w-xl text-[17px] text-slate-300">
               Tell us where you are, what hurts, and which clinic fits your week. CarePT will help you take the next step
               toward pain relief, better movement, and more confidence.
             </p>
@@ -472,7 +502,21 @@ const serviceCards = [
       </section>
     </main>
 
-    <footer class="bg-slate-900 px-6 py-14 text-white lg:px-10 xl:px-16">
+    <section class="relative min-h-[150px] overflow-hidden bg-slate-800 px-6 pt-7 lg:px-10 xl:px-16" aria-label="Ready to start your recovery">
+      <svg class="absolute inset-x-0 bottom-0 h-[118px] w-full text-slate-950" viewBox="0 0 2048 180" preserveAspectRatio="none" aria-hidden="true">
+        <path
+          fill="currentColor"
+          d="M0 0H575C660 0 642 104 724 104H2048V180H0V0Z"
+        />
+      </svg>
+      <div class="relative z-10 mx-auto flex max-w-[1280px] justify-center text-center sm:justify-start sm:pl-[34%] sm:text-left lg:pl-[36%]">
+        <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-white">
+          Ready to Start Your Recovery?
+        </h2>
+      </div>
+    </section>
+
+    <footer class="bg-slate-950 px-6 pb-14 pt-10 text-white lg:px-10 xl:px-16">
       <div class="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[0.72fr_1.28fr]">
         <div>
           <Image src={logoWhite} alt="Care Physical Therapy" class="h-auto w-40" />
@@ -549,3 +593,53 @@ const serviceCards = [
     })();
   </script>
 </BaseLayout>
+
+<style>
+  :global(.index-page :is(h1, h2, h3, h4, h5, h6)) {
+    font-family: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  @media (min-width: 1024px) {
+    .recovery-line {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 12.5%;
+      right: 12.5%;
+      z-index: 0;
+      height: 2px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgb(226 232 240);
+    }
+
+    .recovery-line::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #1b4f8a, #3da8cf, #80be41);
+      transform-origin: left;
+      animation: recovery-progress 2.8s ease-out both;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .recovery-line::after {
+      animation: none;
+    }
+
+  }
+
+  @keyframes recovery-progress {
+    from {
+      transform: scaleX(0);
+    }
+
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+</style>
