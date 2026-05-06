@@ -11,6 +11,10 @@ const {
   title = "CarePT | Hands-On Physical Therapy",
   description = "Individualized, hands-on physical therapy close to home across Louisiana and Mississippi.",
 } = Astro.props;
+
+const siteUrl = Astro.site ?? Astro.url.origin;
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const ogImageUrl = new URL("/assets/brand/logo-watermark.png", siteUrl).toString();
 ---
 
 <!doctype html>
@@ -20,7 +24,21 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href={logo.src} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="CarePT" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1000" />
+    <meta property="og:image:height" content="349" />
+    <meta property="og:image:alt" content="CarePT logo" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
