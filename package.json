@@ -8,7 +8,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "photos:unsplash": "node scripts/pull-unsplash-photos.mjs"
   },
   "dependencies": {
     "@alpinejs/intersect": "^3.15.1",

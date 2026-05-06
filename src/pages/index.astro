@@ -18,6 +18,7 @@ import {
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SiteHeader from "../components/SiteHeader.astro";
+import unsplashTherapyPhotos from "../data/unsplash-therapy-photos.json";
 import logoWhite from "../assets/brand/logo-white.svg";
 
 import covingtonClinic from "../assets/clinics/cov3.jpg";
@@ -273,6 +274,65 @@ const team = [
         </div>
       </section>
 
+      <section class="bg-white px-6 py-24 lg:px-10 xl:px-16" aria-label="Physical therapy care photos">
+        <div class="mx-auto max-w-[1280px]">
+          <div class="mb-10 grid items-end gap-6 lg:grid-cols-[0.82fr_0.55fr]">
+            <div>
+              <p class="mb-5 flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.12em] text-skybrand-700 before:block before:h-0.5 before:w-7 before:rounded-full before:bg-skybrand-600">
+                Care in motion
+              </p>
+              <h2 class="max-w-3xl font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-slate-950">
+                Partners in <span class="animate-animated-text bg-[linear-gradient(-45deg,#3da8cf,#1B4F8A,#3da8cf)] bg-[length:300%] bg-clip-text text-transparent">Your Recovery</span>
+              </h2>
+            </div>
+          </div>
+          <div class="grid gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+            {unsplashTherapyPhotos.slice(0, 1).map((photo) => (
+              <figure class="group overflow-hidden rounded-[24px] bg-white shadow-[0_24px_70px_-54px_rgba(15,23,42,0.55)] ring-1 ring-slate-200/80">
+                <div class="relative overflow-hidden bg-slate-100">
+                  <img
+                    src={photo.src}
+                    alt={photo.alt}
+                    loading="eager"
+                    decoding="async"
+                    class="aspect-[1.16] h-full w-full object-cover transition duration-500 group-hover:scale-[1.03] lg:min-h-[620px]"
+                  />
+                  <span class="absolute left-4 top-4 rounded-full bg-slate-950/75 px-3 py-2 text-[11px] font-black uppercase tracking-[0.08em] text-white backdrop-blur">
+                    {photo.service}
+                  </span>
+                </div>
+                <figcaption class="p-5">
+                  <h3 class="text-base font-extrabold text-slate-950">{photo.service}</h3>
+                  <p class="mt-2 text-sm leading-6 text-slate-600">{photo.copy}</p>
+                </figcaption>
+              </figure>
+            ))}
+            <div class="grid gap-4 sm:grid-cols-2">
+              {unsplashTherapyPhotos.slice(1, 5).map((photo) => (
+                <figure class="group overflow-hidden rounded-[24px] bg-white shadow-[0_24px_70px_-54px_rgba(15,23,42,0.55)] ring-1 ring-slate-200/80">
+                  <div class="relative overflow-hidden bg-slate-100">
+                    <img
+                      src={photo.src}
+                      alt={photo.alt}
+                      loading="lazy"
+                      decoding="async"
+                      class="aspect-[1.32] w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                    />
+                    <span class="absolute left-4 top-4 rounded-full bg-slate-950/75 px-3 py-2 text-[11px] font-black uppercase tracking-[0.08em] text-white backdrop-blur">
+                      {photo.service}
+                    </span>
+                  </div>
+                  <figcaption class="p-4">
+                    <h3 class="text-sm font-extrabold text-slate-950">{photo.service}</h3>
+                    <p class="mt-2 text-[13px] leading-5 text-slate-600">{photo.copy}</p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!--<section class="px-6 py-24 lg:px-10 xl:px-16">-->
       <!--  <div class="mx-auto max-w-[1280px]">-->
       <!--  <div class="mx-auto mb-16 max-w-3xl text-center">-->
@@ -433,7 +493,7 @@ const team = [
                 Meet the clinicians
               </p>
               <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-white">
-                Expertise with the care
+                Expertise with <span class="animate-animated-text bg-[linear-gradient(-45deg,#3da8cf,#1B4F8A,#3da8cf)] bg-[length:300%] bg-clip-text text-transparent">Care</span>
               </h2>
             </div>
           </div>
@@ -503,7 +563,7 @@ const team = [
           d="M0 0H575C660 0 642 104 724 104H2048V180H0V0Z"
         />
       </svg>
-      <div class="relative z-10 mx-auto flex max-w-[1280px] justify-center text-center sm:justify-start pl-[34%] sm:text-left">
+      <div class="relative z-10 mx-auto flex max-w-[1280px] justify-center text-center sm:justify-start pl-[25%] sm:text-left">
         <h2 class="font-display text-[clamp(36px,4vw,48px)] font-extrabold leading-[0.98] tracking-[-0.035em] text-slate-950">
           Ready to <span class="animate-animated-text bg-[linear-gradient(-45deg,#3da8cf,#1B4F8A,#3da8cf)] bg-[length:300%] bg-clip-text text-transparent">Start Your Recovery</span>?
         </h2>

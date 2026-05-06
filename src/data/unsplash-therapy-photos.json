@@ -1,0 +1,42 @@
+[
+  {
+    "service": "Back & Hip Pain",
+    "src": "https://images.unsplash.com/photo-1649751361457-01d3a696c7e6?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=82&w=1800",
+    "alt": "Physical therapist checking hip and knee mobility during hands-on care",
+    "copy": "Hands-on evaluation for lower back pain, hip restrictions, and sciatica-related movement problems.",
+    "credit": "yury kirillov",
+    "profile": "https://unsplash.com/@relievemassage?utm_source=carept&utm_medium=referral"
+  },
+  {
+    "service": "Knee Injuries",
+    "src": "https://images.unsplash.com/photo-1540205895360-4ad4cffb3aa8?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=82&w=1400",
+    "alt": "Therapist guiding a patient through a floor mobility exercise for knee and hip control",
+    "copy": "Guided strengthening and mobility work for ACL, meniscus, runner's knee, and joint replacement recovery.",
+    "credit": "Annie Spratt",
+    "profile": "https://unsplash.com/@anniespratt?utm_source=carept&utm_medium=referral"
+  },
+  {
+    "service": "Shoulder & Arm",
+    "src": "https://images.unsplash.com/photo-1706353399656-210cca727a33?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=82&w=1600",
+    "alt": "Therapist guiding shoulder mobility treatment on a clinic table",
+    "copy": "Mobility, strength, and manual therapy for rotator cuff injuries, frozen shoulder, elbow pain, and wrist conditions.",
+    "credit": "Marc Zeman",
+    "profile": "https://unsplash.com/@zemanphotography?utm_source=carept&utm_medium=referral"
+  },
+  {
+    "service": "Foot & Ankle",
+    "src": "https://images.unsplash.com/photo-1545463913-5083aa7359a6?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=82&w=1600",
+    "alt": "Clinician evaluating a patient's ankle and foot",
+    "copy": "Assessment and treatment for ankle sprains, instability, Achilles issues, and plantar fasciitis.",
+    "credit": "Bas Peperzak",
+    "profile": "https://unsplash.com/@bastroloog?utm_source=carept&utm_medium=referral"
+  },
+  {
+    "service": "Post-Surgical Recovery",
+    "src": "https://images.unsplash.com/photo-1609113160023-4e31f3765fd7?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=82&w=1600",
+    "alt": "Therapy support for a knee brace during recovery",
+    "copy": "Clear progressions after hip, knee, spine, shoulder, and other orthopedic procedures.",
+    "credit": "Terry Shultz P.T.",
+    "profile": "https://unsplash.com/@elektrikpm?utm_source=carept&utm_medium=referral"
+  }
+]
