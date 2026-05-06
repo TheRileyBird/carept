@@ -14,7 +14,7 @@ const {
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth bg-slate-50 text-slate-900">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,12 +29,7 @@ const {
     />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen bg-slate-50 text-slate-800 antialiased selection:bg-skybrand-200 selection:text-slate-900">
-    <div class="relative isolate overflow-hidden">
-      <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[44rem] bg-grid-fade bg-grid"></div>
-      <div class="pointer-events-none absolute right-0 top-16 -z-10 h-80 w-80 rounded-full bg-skybrand-200/40 blur-3xl"></div>
-      <div class="pointer-events-none absolute left-0 top-[32rem] -z-10 h-72 w-72 rounded-full bg-goldbrand-100/60 blur-3xl"></div>
-      <slot />
-    </div>
+  <body>
+    <slot />
   </body>
 </html>
