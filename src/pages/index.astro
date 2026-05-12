@@ -159,10 +159,57 @@ const team = [
   title="CarePT Physical Therapy"
   description="CarePT helps patients move through pain, surgery, injury, and uncertainty with hands-on treatment, clear plans, and attentive care."
 >
-  <div class="index-page overflow-hidden bg-white pt-[78px] text-slate-900">
+  <div class="index-page bg-white text-slate-900" style="overflow: clip">
     <SiteHeader />
 
     <main>
+      <!-- Logo reveal: sticky video bg, logo scales from huge → centered as you scroll -->
+      <!-- 350vh = 250vh sticky travel. Animation completes at 55% (~137vh), leaving ~113vh hold. -->
+      <section id="logo-reveal" class="relative" style="height: 350vh" aria-label="CarePT brand">
+        <div class="sticky top-0 h-screen overflow-hidden">
+          <video
+            class="absolute inset-0 h-full w-full object-cover"
+            src="/assets/video/physical-therapy-action.mp4"
+            autoplay muted loop playsinline
+            aria-hidden="true"
+          ></video>
+          <div id="logo-reveal-overlay" class="pointer-events-none absolute inset-0 bg-slate-950" style="opacity: 0.72"></div>
+          <div class="absolute inset-0 flex flex-col items-center justify-center gap-8">
+            <img
+              id="logo-reveal-logo"
+              src="/assets/brand/logo-white.svg"
+              alt="CarePT Physical Therapy"
+              class="w-[50vw] origin-center will-change-transform"
+              style="opacity: 0; transform: scale(6)"
+            />
+            <p
+              id="logo-reveal-tagline"
+              class="font-display text-2xl font-bold uppercase tracking-[0.18em] text-white/75"
+              style="opacity: 0; transform: translateY(12px)"
+            >
+              Physical Therapy &amp; Rehabilitation
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="relative overflow-hidden bg-slate-950" aria-label="Accepted insurance carriers">
+        <span class="absolute left-6 top-1/2 z-10 flex -translate-y-1/2 items-center gap-2 rounded-full border border-skybrand-500/40 bg-slate-950 px-4 py-2 text-[11px] font-black uppercase tracking-[0.12em] text-skybrand-100 shadow-[16px_0_24px_rgb(2_6_23)] sm:left-10">
+          <span class="h-2 w-2 rounded-full bg-skybrand-400"></span>
+          Insurance accepted
+        </span>
+        <div class="flex min-h-[58px] items-center overflow-hidden pl-48">
+          <div class="flex w-max animate-marquee items-center motion-reduce:animate-none">
+            {[...insuranceCarriers, ...insuranceCarriers].map((carrier) => (
+              <>
+                <span class="whitespace-nowrap px-7 text-[13px] font-bold text-white/70">{carrier}</span>
+                <span class="h-1 w-1 shrink-0 rounded-full bg-skybrand-400/70"></span>
+              </>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section class="grid min-h-[calc(100svh-78px)] overflow-hidden bg-gradient-to-b from-skybrand-200 via-skybrand-50 to-white lg:grid-cols-2">
         <div class="flex flex-col justify-center px-6 py-20 sm:px-10 lg:px-[calc((100vw-min(1280px,100vw-48px))/2+24px)] lg:pr-16">
           <div class="mb-8 inline-flex w-fit items-center gap-3 rounded-full border border-slate-700/30 bg-white/70 px-4 py-2">
@@ -191,23 +238,6 @@ const team = [
         <div class="relative min-h-[520px] overflow-hidden rounded-bl-[72px] bg-slate-900 lg:min-h-[calc(100svh-78px)] lg:rounded-bl-[120px]">
           <Image src={teamHeroImage} alt="CarePT team members" class="absolute inset-0 h-full w-full object-cover" />
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-950/10 to-transparent"></div>
-        </div>
-      </section>
-
-      <section class="relative overflow-hidden bg-slate-950" aria-label="Accepted insurance carriers">
-        <span class="absolute left-6 top-1/2 z-10 flex -translate-y-1/2 items-center gap-2 rounded-full border border-skybrand-500/40 bg-slate-950 px-4 py-2 text-[11px] font-black uppercase tracking-[0.12em] text-skybrand-100 shadow-[16px_0_24px_rgb(2_6_23)] sm:left-10">
-          <span class="h-2 w-2 rounded-full bg-skybrand-400"></span>
-          Insurance accepted
-        </span>
-        <div class="flex min-h-[58px] items-center overflow-hidden pl-48">
-          <div class="flex w-max animate-marquee items-center motion-reduce:animate-none">
-            {[...insuranceCarriers, ...insuranceCarriers].map((carrier) => (
-              <>
-                <span class="whitespace-nowrap px-7 text-[13px] font-bold text-white/70">{carrier}</span>
-                <span class="h-1 w-1 shrink-0 rounded-full bg-skybrand-400/70"></span>
-              </>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -599,6 +629,56 @@ const team = [
   </div>
 
   <script is:inline>
+    (() => {
+      const section = document.getElementById('logo-reveal');
+      if (!section) return;
+      const overlay = document.getElementById('logo-reveal-overlay');
+      const logo = document.getElementById('logo-reveal-logo');
+      const tagline = document.getElementById('logo-reveal-tagline');
+
+      function easeInOutCubic(t) {
+        return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      }
+
+      // Animation completes at this fraction of total scroll; rest is hold time.
+      const ANIM_CUTOFF = 0.55;
+
+      function updateLogoReveal() {
+        const scrollable = section.offsetHeight - window.innerHeight;
+        const raw = -section.getBoundingClientRect().top / scrollable;
+        // p: 0→1 across entire sticky travel (250vh)
+        const p = Math.max(0, Math.min(1, raw));
+        // animP: 0→1 across just the animation phase, then clamps at 1 for the hold
+        const animP = Math.min(1, p / ANIM_CUTOFF);
+        const e = easeInOutCubic(animP);
+
+        // Logo: scale 6 → 1 over animation phase; holds at 1 during hold phase
+        logo.style.transform = `scale(${(6 - e * 5).toFixed(4)})`;
+        // Opacity: 0 → 1 in the first quarter of the animation phase
+        logo.style.opacity = Math.min(1, animP * 4).toFixed(4);
+
+        // Tagline: fades + rises in during the last 20% of the animation phase
+        const tProgress = Math.max(0, (animP - 0.80) / 0.20);
+        tagline.style.opacity = tProgress.toFixed(4);
+        tagline.style.transform = `translateY(${(12 - tProgress * 12).toFixed(2)}px)`;
+
+        // Overlay: 0.72 → 0.22 over animation phase, then holds
+        overlay.style.opacity = (0.72 - e * 0.50).toFixed(4);
+      }
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReduced) {
+        window.addEventListener('scroll', updateLogoReveal, { passive: true });
+        updateLogoReveal();
+      } else {
+        logo.style.transform = 'scale(1)';
+        logo.style.opacity = '1';
+        tagline.style.opacity = '1';
+        tagline.style.transform = 'translateY(0)';
+        overlay.style.opacity = '0.5';
+      }
+    })();
+
     (() => {
       const river = document.querySelector("#locations");
       if (!river) return;
